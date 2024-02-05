@@ -1,0 +1,69 @@
+.divMainListAdress{
+  display: flex;
+  flex-direction: column;
+}
+.buttonReturnToMaket{
+  width: fit-content;
+  font-size: 0.8vw;
+  font-style: italic;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-left: 3vw;
+  margin-top: 2vh;
+  margin-bottom: 1vw;
+}
+.divTitleListAdresses{
+  width: 100vw;
+  text-align: center;
+  font-size:1.8vw;
+}
+.divTableListAdresses{
+  width: 95vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5vw;
+}
+.tableListAdresses{
+  width: 50vw;
+  border-collapse: collapse;
+  margin-bottom: 1vh;
+  font-size: 0.8vw;
+}
+.thTableListAdresses{
+  border: 0.1vw solid black ;
+}
+
+.buttonRemove{
+  font-size: 0.7vw;
+  font-style: italic;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.tdButton{
+  border-top: 1px solid white;
+  border-left: 1px solid black;
+  border-right: 1px solid white;
+  border-bottom: 1px solid black;
+  padding: 0.1vw 0.1vh;
+  width: 3vw;
+}
+
+.divNewAdress{
+  display: flex;
+  flex-direction: column;
+}
+.divNewEmail{
+  display: flex;
+  font-size: medium;
+  justify-content: space-between;
+  margin-bottom: 1%;
+}
+.divNewDescription{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: medium;
+  margin-bottom: 2%;
+}

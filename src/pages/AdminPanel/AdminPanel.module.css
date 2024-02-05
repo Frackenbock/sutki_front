@@ -1,0 +1,17 @@
+.adminCont{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3vh;
+}
+.blockButtonAdmin{
+    margin-bottom: 2vh;
+}
+.buttonAdm{
+    font-family: cursive;
+    border-radius: 5px;
+    font-style: italic;
+    font-size: 90%;
+}

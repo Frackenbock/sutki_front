@@ -1,0 +1,35 @@
+.divMainAdminMaket{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.spanTitlePageAdminMaket{
+    font-size: 1.6vw;
+    margin-bottom: 1.5vh;
+}
+.tableAdminMaket{
+    border-collapse: collapse;
+    border: 0.1vw solid black;
+    width: 95vw;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.trMainInTableAdminMaket{
+    font-size: 0.7vw;
+}
+.trMainInTableAdminMaket:hover{
+    background-color: #c6ffc6;
+    cursor: pointer;
+}
+
+.tdWithDateInTableAdminMaket{
+    width: 4vw;
+    border-right:0.12vw solid black ;
+}
+.tdDeleteRecordInTableAdminMaket{
+    border-right:0.12vw solid black ;
+    border-bottom:0.11vw solid black ;
+    border-top:0.12vw solid black ;
+}

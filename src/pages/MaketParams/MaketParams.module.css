@@ -1,0 +1,75 @@
+.contParamsMaket{
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonReturnBlokAndTitle{
+  display: flex;
+  width: 95vw;
+  margin-top: 2vh;
+  margin-left: 5vw;
+}
+
+.buttonReturn{
+  font-size: 0.8vw;
+  font-style: italic;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.contTitleParams{
+  font-size:2vw;
+  margin-bottom: 2vh;
+}
+.contTableParams{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5vw;
+}
+.tableParams{
+  width: 50vw;
+  border-collapse: collapse;
+  margin-bottom: 1%;
+  border: 0.1vw solid black;
+}
+.tableParamsTh{
+  border: 0.1vw solid black;
+  font-size: 0.9vw;
+}
+
+.buttonRD{
+  width: fit-content;
+  font-size: 0.7vw;
+  font-style: italic;
+  font-family: monospace;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.tdButton{
+  border-top: 1px solid white;
+  border-left: 1px solid black;
+  border-right: 1px solid white;
+  border-bottom: 1px solid black;
+  width: 3vw;
+}
+
+.chagedIp{
+  display: flex;
+  flex-direction: column;
+}
+
+.divNewIp{
+  display: flex;
+  font-size: medium;
+  justify-content: space-between;
+  margin-bottom: 1vh;
+}
+.buttonSaveChangedRecord{
+  font-size: 0.8vw;
+  font-style: italic;
+}
+
+
+

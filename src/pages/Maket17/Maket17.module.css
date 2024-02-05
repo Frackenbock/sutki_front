@@ -1,0 +1,75 @@
+.divMaketContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 6vh;
+    width: 100vw;
+}
+.divTableAndTitleContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 5vw;
+}
+.spanMaketTitle{
+    font-size:1.8vw;
+    margin-bottom: 1%;
+}
+.tableMaket{
+    width: 40vw;
+    border-collapse: collapse;
+    border: 2px solid black; 
+}
+.tbodyTableMaket{
+    font-size: 0.9vw;
+}
+.selectWindDirection{
+    width: 8vw;
+    font-size: 0.8vw;
+}
+.colOneHead{
+    width:65vw ;
+    border: 1px solid black;
+}
+.colOneBody{
+    text-align: left;
+    padding-left: 1%;
+    padding: 0.3vh 0.3vw;
+}
+.colTwoHead{
+    width:8vw ;
+    border: 1px solid black;
+}
+.colThreeHead{
+    width:10vw ;
+    border: 1px solid black;
+}
+
+.inputMaket{
+    width:8vw;
+    text-align: center;
+    font-size: 0.8vw;
+}
+.contMaketButtons{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2vw;
+    margin-top: 5vh;
+}
+
+.divButtonsDown{
+    margin-top: 140%;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonMaket{
+    width: fit-content;
+    font-size: 0.8vw;
+    font-style: italic;
+    font-family: monospace;
+    margin-bottom: 1vh;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+

@@ -1,0 +1,29 @@
+.tableCenter{
+  width: 60vw;
+  height: 63.9vh;
+  border-collapse: collapse;
+  border: 2px solid black;
+  font-size: 0.7vw;
+}
+.tableCenter th,td {
+    border: 1px solid black;
+    text-align: center;
+  }
+.tdWithTime:hover{
+  cursor:pointer;
+  background-color:beige;
+}
+.tdWithVirab:hover{
+  background-color:beige;
+}
+.tdWithChangedTime{
+  background-color: lightblue;
+}
+.tdWithEmptyData{
+  background-color: lightcoral;
+}
+
+.borderC{
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}

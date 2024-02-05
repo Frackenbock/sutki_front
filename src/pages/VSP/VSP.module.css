@@ -1,0 +1,68 @@
+.vspCont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 98vw;
+    margin-top: 2vh;
+}
+.vspTable{
+    border-collapse: collapse;
+    font-size: 0.7vw;
+    border: 2px solid black;
+    width: 65vw; 
+}
+.vspTitle{
+    font-size: 1.8vw;
+    margin-bottom: 60vh;
+    margin-left: 2vw; 
+    width: 18vw; 
+}
+.vspTh{
+    border: 1px solid black;
+    font-size: 0.8vw;
+}
+.vspTrLine{
+    border-top: 2px solid black;
+}
+.vspTable input{
+    text-align: center;
+    font-size: 0.6vw;
+    border: 0.1vw solid black;
+    padding: none;
+}
+.divButtonTableCalc{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1vw;
+    width: 25vw;
+}
+
+.divWithTips{
+    margin-bottom: 30vw;
+    font-size: 0.8vw;
+}
+
+.itogVspTable{
+    margin-top: 1vh;
+    border-collapse: collapse;
+    font-size: 0.8vw;
+    border: 2px solid black;
+    background-color: lightgreen;
+    width: 15vw
+}
+.buttonVsp{
+    width: fit-content;
+    font-size: 0.9vw;
+    font-style: italic;
+    margin-bottom: 1vh;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.textModal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+

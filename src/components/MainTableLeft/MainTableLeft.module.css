@@ -1,0 +1,45 @@
+.tableLeft{
+  width: 13vw;
+  border-collapse: collapse;
+  border: 2px solid black;
+  font-size: 0.7vw;
+  height: 63.9vh;
+}
+.tableLeft th, td {
+  border: 1px solid black;
+  text-align: center;
+}
+.inputNaporEmpty{
+  background-color:lightcoral;
+  width: 4vw;
+  text-align: center;
+  font-size: 0.7vw;
+  padding: 0;
+  margin: 0;
+  border: 1px solid black;
+  border-style: hidden;
+  box-shadow: 0 0 0 0.05vw black;
+}
+.inputNaporNotEmpty{
+  background-color:lightgreen;
+  width: 4vw;
+  text-align: center;
+  font-size: 0.7vw;
+  padding: 0;
+  margin: 0;
+  border: 1px solid black;
+  border-style: hidden;
+  box-shadow: 0 0 0 0.05vw black;
+}
+.hourCollumn{
+  width: 13%;
+  text-align: center;
+}
+.timeCollumn{
+  width: 30%;
+  text-align: center;
+}
+.tbodyTableLeft{
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}

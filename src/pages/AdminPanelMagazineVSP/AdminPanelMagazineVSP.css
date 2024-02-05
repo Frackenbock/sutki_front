@@ -1,0 +1,90 @@
+.vspMagazineCont{
+    margin-top: 1%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.vspMagazineTable{
+    border-collapse: collapse;
+    width: 90%;
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+
+.vspMagazineTableInput{
+    border-collapse: collapse;
+    width: 150%;
+    margin-bottom: 1%;
+}
+.vspMagazineTableEditing{
+    border-collapse: collapse;
+    margin-bottom: 1%;
+    font-size: small;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.vspMagazineContTableInput{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputTimeCeilOpenMagazine{
+    display:flex;
+    flex-direction: row;
+    justify-content:space-around
+}
+.inputTimeCeilCloseMagazine{
+    display:flex;
+    justify-content:space-around
+}
+.modalMagazine{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.buttonsBackFrontMagazine{
+    width: fit-content;
+    font-size: 115%;
+    font-style: italic;
+    font-family: monospace;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.inputAllNApors{
+    width: 150%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonsCont{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.blocButtonsSaveAndDate{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 200%;
+    margin-top: 1%;
+}
+.buttonsNavigate{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    width:95%;
+    flex-direction:row
+}
+
+.border{
+    border-top: 2px solid black;
+}

@@ -1,0 +1,31 @@
+.chartCont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonTitle{
+    width: 85%;
+    margin-top: 1%;
+    text-align: center;
+}
+
+.buttonChart{
+    float: left;
+    border-radius: 4spx;
+    font-family: cursive;
+    font-style: italic;
+}
+.titleChart{
+    text-align: center;
+    font-size:1.8vw
+}
+
+.divButtonsChart{
+    float: right;
+    border-radius: 4spx;
+    font-family: cursive;
+    font-style: italic;
+}
+

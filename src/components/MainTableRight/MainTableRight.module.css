@@ -1,0 +1,15 @@
+.tableRight{
+    width: 12vw;
+    height: 63.9vh;
+    border-collapse: collapse;
+    border: 2px solid black;
+    font-size: 0.7vw;
+  }
+.tableRight th,td {
+    border: 1px solid black;
+    text-align: center;
+  }
+.tbodyTableRight{
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+  }

@@ -1,0 +1,9 @@
+.button{
+    margin: 3px;
+    border: 2px solid darkcyan;
+    border-radius: 0.5rem;
+    width:11rem;
+    font-family: monospace;
+    font-style: italic;
+    font-size: x-large;
+}

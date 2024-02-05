@@ -1,0 +1,26 @@
+.Pbr_Aiis{
+    margin-left: 2vw;
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+  }
+.Pbr_Aiis table{
+    border-collapse: collapse;
+    border: 2px solid black;
+    margin-top: 1%;
+    font-size:0.9vw ;
+}
+.Pbr_Aiis_th {
+    border: 1px solid black;
+    text-align: center;
+    width: 7vw;
+}
+.middleLineHat{
+    border-left: 2px solid black;
+}
+.Pbr_Aiis_buttons{
+    display: flex;
+}

@@ -1,0 +1,30 @@
+button{
+  font-family: inherit;
+  font-style: inherit;
+}
+.mymodal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.mymodalContent {
+  padding: 25px;
+  border-radius: 16px;
+  background-color: white;
+  min-width: 200px;
+  font-family: cursive;
+  font-style: italic;
+  font-size: 1vw;
+}
+
+.mymodalactive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
