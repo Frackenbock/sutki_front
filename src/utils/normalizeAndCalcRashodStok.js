@@ -31,7 +31,6 @@ function normalizeRashod(arrRashod,power){
 //добавление и расчёт последнего столбца с суммами расхода по часам(24 значения) и среднего расхода за сутки
    let totalSumRashod=0;
    let totalSrednRashod=0;
-   let schetchick=0;
    for(let i = 0;i<=23;i++){
       let sum=0;
       for(let key in dataRashod[i]){
@@ -42,15 +41,9 @@ function normalizeRashod(arrRashod,power){
       };
       dataRashod[i].summ=String(sum);
       totalSumRashod+=Number(sum);
-      if(dataRashod[i].summ!=='0'){
-         schetchick++;
-      };
+
    };
-   if(totalSumRashod===0){
-      totalSrednRashod=0
-   }else{
-      totalSrednRashod=Math.round(totalSumRashod/schetchick);
-   }
+   totalSrednRashod=Math.round(totalSumRashod/24);
    
 //создание и расчёт массива данных стока с суммами  по часам(24 значения) в последнем столбце и расчёт суммарного стока за сутки
    let totalSumStok=0;
