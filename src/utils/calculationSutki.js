@@ -23,8 +23,10 @@ function calculationSutki(arrNapor,arrTime,arrPower){
     for(let j=1;j<=8;j++){
         let elem = 0;
         for(let i=0;i<arrPower.length;i++){
-            if(arrPower[i].gen1!==undefined){
-                elem+=Number((arrPower[i]['gen'+j]).replace(',','.'))
+            if(arrPower[i]['gen'+j]!=='нет данных'){
+                if(arrPower[i]['gen'+j]!==undefined &&arrPower[i]['gen'+j]!=='нет данных'){
+                    elem+=Number((arrPower[i]['gen'+j]).replace(',','.'))
+                }
             }
         }
         arrSumPower.push(String((elem/1000).toFixed(2)).replace('.',','))
@@ -33,10 +35,14 @@ function calculationSutki(arrNapor,arrTime,arrPower){
 //расчёт суммарной выработки по всем генераторам за час (24 значения)  
     let summHourAllGen=[]
     let totalPowerVr = 0
+    let chetchikChasov=0
     for(let i=0;i<arrPower.length;i++){
         let summHourAll=0;
         for(let j=1;j<=8;j++){
-            summHourAll+=Number((arrPower[i]['gen'+j]).replace(',','.'))
+            if(arrPower[i]['gen'+j]!==undefined &&arrPower[i]['gen'+j]!=='нет данных'){
+                summHourAll+=Number((arrPower[i]['gen'+j]).replace(',','.'))
+                chetchikChasov++
+            }
         }
         //console.log()
         if(arrPower[i].gen1===undefined||arrPower[i].gen1==='-'){
@@ -56,15 +62,16 @@ function calculationSutki(arrNapor,arrTime,arrPower){
     let elemTime=0;
     for(let j=1;j<=8;j++){                          //пробегаем по каждому генератору
         for(let i=0;i<arrTime.length;i++){          //пробегаем по каждому часу
-            if(arrTime[i]['gen'+j]===''){           //при отсутствии значения времени, время работы генератора за час приравнивается 0
-                arrTime[i]['gen'+j]=0;
+            if(arrTime[i]['gen'+j]===''||arrTime[i]['gen'+j]==='-'){           //при отсутствии значения времени, время работы генератора за час приравнивается 0
+                arrTime[i]['gen'+j]='0';
             }
             elemTime+=Number(arrTime[i]['gen'+j])   //суммирование времени работы генератора за сутки 
         }
         arrTimePower.push(String((elemTime/60).toFixed(2)).replace('.',',')) //просуммированное значение в минутах переводим в часы и кладём в массив
         elemTime=0;
     }
-    return {srednNapor,arrSumPower,arrTimePower,summHourAllGen,totalPower}
+    chetchikChasov=chetchikChasov/8
+    return {srednNapor,arrSumPower,arrTimePower,summHourAllGen,totalPower,chetchikChasov}
 }
 
 

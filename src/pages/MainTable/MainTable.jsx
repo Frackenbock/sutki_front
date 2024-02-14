@@ -95,7 +95,9 @@ function  MainTable() {
 
    function allCalculation(){
       let data,dataForRashodStok,rashhodData;
+
       data = calculationSutki(napors,times,powersGenerators);
+      // console.log(data)
       rashhodData= calculationRashodStok(napors,times,powersGenerators);  
       if (typeof(rashhodData)==='string'){//если пришла ошибка
          setModal(true)
@@ -106,7 +108,7 @@ function  MainTable() {
          //fetch отрабатывает в цикле for, что создаёт задержки, нужно время чтоб отработали все запросы в БД
             setTimeout(()=>{
                setLoading(false);
-               dataForRashodStok  =  normalizeAndCalcRashodStok(rashhodData,data.totalPower);//
+               dataForRashodStok  =  normalizeAndCalcRashodStok(rashhodData,data.totalPower,data.chetchikChasov);//
                dispatch({type:"CHANGE_ARR_RASHOD",payload:dataForRashodStok.dataRashod});
                dispatch({type:"CHANGE_TOTAL_RASHOD",payload:dataForRashodStok.totalSrednRashod});
                dispatch({type:"CHANGE_ARR_STOK",payload:dataForRashodStok.dataStok});
@@ -123,7 +125,9 @@ function  MainTable() {
             dispatch({type:"CHANGE_SUMM_TIMES",payload:data.arrTimePower});
             dispatch({type:"CHANGE_TOTAL_POWER",payload:data.totalPower});
             dispatch({type:"CHANGE_TOTAL_POWER_FOR_HOUR",payload:data.summHourAllGen});
-            dispatch({type:"CHANGE_CLACULATION_FLAG",payload:true});
+            if(data.chetchikChasov===24){
+               dispatch({type:"CHANGE_CLACULATION_FLAG",payload:true});
+            }
             dispatch({type:"CHANGE_TITLE_ITOG_TABLE",payload:`Итоговая таблица за ${normalizeDate(date)}`});
       }
 

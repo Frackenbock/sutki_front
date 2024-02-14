@@ -1,8 +1,7 @@
 import arrGoodRashod from "../data/dataForRashod"
 import arrStok from "../data/dataForStok"
 
-function normalizeRashod(arrRashod,power){
-   // console.log(arrRashod)
+function normalizeRashod(arrRashod,power,schetchik){
    const dataRashod  =new arrGoodRashod().arrGenRashod;
    const dataStok = new arrStok().arrGenStok;
 //нормализация массива с данными расходов
@@ -31,6 +30,7 @@ function normalizeRashod(arrRashod,power){
 //добавление и расчёт последнего столбца с суммами расхода по часам(24 значения) и среднего расхода за сутки
    let totalSumRashod=0;
    let totalSrednRashod=0;
+
    for(let i = 0;i<=23;i++){
       let sum=0;
       for(let key in dataRashod[i]){
@@ -43,7 +43,7 @@ function normalizeRashod(arrRashod,power){
       totalSumRashod+=Number(sum);
 
    };
-   totalSrednRashod=Math.round(totalSumRashod/24);
+   totalSrednRashod=Math.round(totalSumRashod/schetchik);
    
 //создание и расчёт массива данных стока с суммами  по часам(24 значения) в последнем столбце и расчёт суммарного стока за сутки
    let totalSumStok=0;
@@ -67,7 +67,7 @@ function normalizeRashod(arrRashod,power){
       for(let j = 0;j<=23;j++){
         elem+=Number(dataRashod[j]['gen'+i])
       }
-      arrSumGenRashod.push(Math.round(elem/24))
+      arrSumGenRashod.push(Math.round(elem/schetchik))
    }
 //расёт суммарных данных стока по генераторам(8 значений)
    let arrSumGenStok=[];
