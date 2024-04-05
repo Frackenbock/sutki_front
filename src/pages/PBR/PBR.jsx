@@ -22,6 +22,7 @@ function PBR (){
 
     return (
         <div className={cl.pbrCont}>  
+            <span style={{fontSize:"1.8vw"}}>{'Данные файлов ПБР'}</span>
             <table className={cl.pbrTable}>
                 <colgroup>
                     <col span={"1"} style={{backgroundColor:"lightgreen",width:"15%"}}></col>

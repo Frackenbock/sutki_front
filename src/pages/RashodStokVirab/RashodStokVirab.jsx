@@ -82,7 +82,7 @@ function  RashodStokVirab() {
    }
    return (
       <div className={classes.cont}>
-         <span style={{fontSize:'x-large',marginBottom:'1%'}}>{"Данные среднесуточного расхода, стока и выработки"}</span>
+         <span style={{fontSize:'1.8vw',marginBottom:'1vh'}}>{"Данные среднесуточного расхода, стока и выработки"}</span>
          <SelectDiapazonDate 
             dateBegin = {dateBeginDiapazone}
             dateEnd = {dateEndDiapazone}

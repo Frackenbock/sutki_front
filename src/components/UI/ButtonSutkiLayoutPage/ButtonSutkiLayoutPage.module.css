@@ -1,0 +1,11 @@
+.button {
+  margin: 2px;
+  border: 1px solid black;
+  border-radius: 3px;
+  font-family: cursive;
+  font-style: italic;
+  height: max-content;
+  width: max-content;
+  font-size: 0.8vw;
+  padding: 2px 4px;
+}

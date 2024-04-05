@@ -97,7 +97,6 @@ function  MainTable() {
       let data,dataForRashodStok,rashhodData;
 
       data = calculationSutki(napors,times,powersGenerators);
-      // console.log(data)
       rashhodData= calculationRashodStok(napors,times,powersGenerators);  
       if (typeof(rashhodData)==='string'){//если пришла ошибка
          setModal(true)
@@ -125,7 +124,7 @@ function  MainTable() {
             dispatch({type:"CHANGE_SUMM_TIMES",payload:data.arrTimePower});
             dispatch({type:"CHANGE_TOTAL_POWER",payload:data.totalPower});
             dispatch({type:"CHANGE_TOTAL_POWER_FOR_HOUR",payload:data.summHourAllGen});
-            if(data.chetchikChasov===24){
+            if(data.chetchikChasov===24){//кнопки откроются только когда данные аиискуэ есть за все 24 часа
                dispatch({type:"CHANGE_CLACULATION_FLAG",payload:true});
             }
             dispatch({type:"CHANGE_TITLE_ITOG_TABLE",payload:`Итоговая таблица за ${normalizeDate(date)}`});

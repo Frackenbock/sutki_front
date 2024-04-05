@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import { useNavigate, Outlet} from "react-router-dom";
-import Button from "../../components/UI/Button_layout/Button";
+import Button from "../../components/UI/ButtonSutkiLayoutPage/ButtonSutkiLayoutPage";
 import cl from "./Sutki.module.css";
 import { useSelector,useDispatch } from "react-redux";
 import normalizeItogData from '../../utils/normalizeItogData';
@@ -37,8 +37,7 @@ function  Sutki() {
 
    const TimeHH = useSelector((state)=>{return state.itog.TimeHH});
    const StokHH = useSelector((state)=>{return state.itog.StokHH});
-   const RashodHH = useSelector((state)=>{return state.itog.RashodHH});
-   const mainStok = useSelector((state)=>{return state.itog.mainStok});
+   const RashodHH = useSelector((state)=>{return state.itog.RashodHH});;
 
    const itogApi = new fetchItog();
 

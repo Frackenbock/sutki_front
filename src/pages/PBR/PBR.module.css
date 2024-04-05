@@ -1,20 +1,22 @@
 .pbrTable{
-    width: 50%;
-    height: 75%;
+    width: 70vw;
     border-collapse: collapse;
     border: 2px solid black;
     font-size: 0.9vw;
+    margin-top: 2vh;
 }
 .thPbr{
     border: 1px solid black;
     text-align: center;
-    width: 4;
+    width: 3vw;
 }
 .pbrCont{
-    height:50em;
+    margin-left: 2vw;
+    margin-top: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 
