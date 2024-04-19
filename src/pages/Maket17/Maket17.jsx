@@ -13,7 +13,7 @@ function  Maket17() {
    const [textForModal,setTextForModal] = useState("")
    const [dataDate,setdataDate] = useState("")
    const apiMaket = new Maket();
-   const navigate = useNavigate()
+   const navigate = useNavigate();
    const passw = useSelector((state)=>{return state.admin.passw});//сохранённый пароль (для сравнения с вводимым) 
    const [password,setPassword] = useState('');              // для вводимого пароля (для сравнения с соранённым)
    const [placeholder,setPlaceholder]=useState('Введите пароль'); //Надпись для поля ввода пароля
@@ -141,7 +141,6 @@ function  Maket17() {
          default: shifr='999'; break;
       }
 
-      console.log(typeof(maxLoad),minLoad)
       const data={
        date,
        windSpeed:windSpeed.replace(",","."),   
@@ -357,6 +356,7 @@ function  Maket17() {
 
    return (
     <div className={cl.divMaketContainer}>
+
       <div className={cl.divTableAndTitleContainer}>
          <span className={cl.spanMaketTitle}>{"Макет №17"}</span>
          <table className={cl.tableMaket}>
@@ -626,6 +626,10 @@ function  Maket17() {
          >Рассчитать выработку за  {normalizeDate(date)}</button>
 
          <div className={cl.divButtonsDown}>
+            <button 
+            className={cl.buttonMaket}
+               onClick={()=>{navigate('/maket17data')}}>
+                  {"Выгрузка данных макета за период"}</button>
             <button
             className={cl.buttonMaket}
                onClick={()=>{

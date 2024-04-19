@@ -99,7 +99,7 @@ function  ListAdress() {
     <div className={cl.divMainListAdress}>
       <button 
          className={cl.buttonReturnToMaket}
-         onClick={()=>{navigate("/maket17")}}
+         onClick={()=>{navigate("/maket17mail")}}
       > {`Возврат к макету`}</button> 
       <div className={cl.divTitleListAdresses}>
          <span >{"Список получателей макета"}</span>

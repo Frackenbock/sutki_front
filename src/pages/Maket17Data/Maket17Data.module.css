@@ -5,9 +5,25 @@
     justify-content: center;
 }
 .spanTitlePageAdminMaket{
-    font-size: 1.6vw;
-    margin-bottom: 1.5vh;
+    font-size:2vw;
+    margin-bottom: 2vh;
 }
+.buttonReturnBlokAndTitle{
+    display: flex;
+    justify-content: space-between;
+    width: 90vw;
+    margin-top: 3vh;
+    margin-left: 2vw;
+    margin-right: 5vw;
+  }
+  
+.buttonReturn{
+    font-size: 0.8vw;
+    font-style: italic;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
 .tableAdminMaket{
     border-collapse: collapse;
     border: 0.1vw solid black;

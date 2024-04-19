@@ -7,7 +7,7 @@ import normalizeItogData from '../../utils/normalizeItogData';
 import Modal from "../../components/Modal/Modal";
 import fetchItog from '../../API/fetchItog';
 import normalizeDate from '../../utils/normalizeDate';
-import {utils,writeFile} from 'xlsx'
+import {utils,writeFile} from 'xlsx';
 
 function  Sutki() {
 
@@ -51,9 +51,9 @@ function  Sutki() {
 
 //Экспорт в Exel главной таблицы, таблицы расходов и итоговой таблицы
 function ExportTable(){
-   var exportArrMainTable=[]// массив  данных для листа главной таблицы в Exel
-   var exportArrRashod=[]// массив  данных для листа расходов в Exel
-   var ArrItogTable=[]
+   var exportArrMainTable=[];// массив  данных для листа главной таблицы в Exel
+   var exportArrRashod=[];// массив  данных для листа расходов в Exel
+   var ArrItogTable=[];
 ///////////////Настройка столбцов для Exel главной таблицы 
    var wscolsMainTable = [
       {wch:6},{wch:10},{wch:8},
@@ -87,14 +87,14 @@ function ExportTable(){
          'ГГ-5(Млн. м3)':rashodData[i].gen5,'ГГ-6(Млн. м3)':rashodData[i].gen6,
          'ГГ-7(Млн. м3)':rashodData[i].gen7,'ГГ-8(Млн. м3)':rashodData[i].gen8,
          'Сток(Млн. м3)':rashodData[i].summ,})
-   }
+   };
    exportArrRashod.push({
       '№ часа':'','Интервал':'Итог',
       'ГГ-1(Млн. м3)':sumGenRashod[0],'ГГ-2(Млн. м3)':sumGenRashod[1],
       'ГГ-3(Млн. м3)':sumGenRashod[2],'ГГ-4(Млн. м3)':sumGenRashod[3],
       'ГГ-5(Млн. м3)':sumGenRashod[4],'ГГ-6(Млн. м3)':sumGenRashod[5],
       'ГГ-7(Млн. м3)':sumGenRashod[6],'ГГ-8(Млн. м3)':sumGenRashod[7],
-      'Сток(Млн. м3)':totalRashod,})
+      'Сток(Млн. м3)':totalRashod,});
 ///////////////
 ///////////////Заполнение массива данных для Exel главной таблицы 
    for (let i=0;i<24;i++){

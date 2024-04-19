@@ -81,7 +81,7 @@ function  MaketParams() {
       <div className={classes.buttonReturnBlokAndTitle}>
          <button 
             className={classes.buttonReturn}
-            onClick={()=>{navigate("/maket17")}}
+            onClick={()=>{navigate("/maket17mail")}}
          > {`Возврат к макету`}</button> 
       </div>
       <div className={classes.contTableParams}>

@@ -81,7 +81,7 @@ function Layout() {
               style={{backgroundColor:buttonsLayout.maketButton}}
               value={"Maket №17"}
               onClick={() => {
-                navigate("/maket17");
+                navigate("/maket17mail");
                 dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:{sutkiButton:'',vspButton:'',pbrAiisButton:'',pbrButton:'',maketButton:'lightgreen',adminButton:'',srRashodButton:''}});
               }}
             />

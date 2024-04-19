@@ -5,7 +5,7 @@ import AdminPanelHourRashodVSP from "../AdminPanelHourRashodVSP/AdminPanelHourRa
 import AdminPanelHourZnachUVB from "../AdminPanelHourZnachUVB/AdminPanelHourZnachUVB";
 import AdminPanelHourZnachNapor from "../AdminPanelHourZnachNapor/AdminPanelHourZnachNapor";
 import AdminPanelLogging from "../AdminPanelLogging/AdminPanelLogging";
-import AdminPanelMaket17 from "../AdminPanelMaket17/AdminPanelMaket17";
+
 
 function  AdminPanel() {
    const [numberWindow,setNumberWindow]=useState(2);
@@ -24,27 +24,22 @@ function  AdminPanel() {
             <button 
                className={classes.buttonAdm}
                style={{marginRight:'5px',backgroundColor:colorButtons.HourProletColor}} 
-               onClick={()=>{setNumberWindow(4); setColorButtons({UvbColor:'',ProletColor:'',HourProletColor:'lightgreen',naporColor:'',logs:'',maket:''})}}>
+               onClick={()=>{setNumberWindow(4); setColorButtons({UvbColor:'',ProletColor:'',HourProletColor:'lightgreen',naporColor:'',logs:'',})}}>
                   {"Журнал часовых значений расхода за сутки через ВСП"}</button>
             <button 
                className={classes.buttonAdm}
                style={{marginRight:'5px',backgroundColor:colorButtons.UvbColor}} 
-               onClick={()=>{setNumberWindow(1); setColorButtons({UvbColor:'lightgreen',ProletColor:'',HourProletColor:'',naporColor:'',logs:'',maket:''})}}>
+               onClick={()=>{setNumberWindow(1); setColorButtons({UvbColor:'lightgreen',ProletColor:'',HourProletColor:'',naporColor:'',logs:'',})}}>
                   {"Данные УВБ"}</button>
             <button 
                className={classes.buttonAdm}
                style={{marginRight:'5px',backgroundColor:colorButtons.naporColor}} 
-               onClick={()=>{setNumberWindow(2); setColorButtons({UvbColor:'',ProletColor:'',HourProletColor:'',naporColor:'lightgreen',logs:'',maket:''})}}>
+               onClick={()=>{setNumberWindow(2); setColorButtons({UvbColor:'',ProletColor:'',HourProletColor:'',naporColor:'lightgreen',logs:'',})}}>
                   {"Данные напоров"}</button>
             <button 
                className={classes.buttonAdm}
-               style={{marginRight:'5px',backgroundColor:colorButtons.maket}} 
-               onClick={()=>{setNumberWindow(6); setColorButtons({UvbColor:'',ProletColor:'',HourProletColor:'',naporColor:'',logs:'',maket:'lightgreen'})}}>
-                  {"Данные макета №17"}</button>
-            <button 
-               className={classes.buttonAdm}
                style={{marginRight:'5px',backgroundColor:colorButtons.logs}} 
-               onClick={()=>{setNumberWindow(5); setColorButtons({UvbColor:'',ProletColor:'',HourProletColor:'',naporColor:'',logs:'lightgreen',maket:''})}}>
+               onClick={()=>{setNumberWindow(5); setColorButtons({UvbColor:'',ProletColor:'',HourProletColor:'',naporColor:'',logs:'lightgreen',})}}>
                   {"Логи выгрузки выработки"}</button>
          </div>
          {numberWindow===1 && <AdminPanelHourZnachUVB/> }
@@ -52,7 +47,6 @@ function  AdminPanel() {
          {numberWindow===3 && <AdminPanelMagazineVSP/> }
          {numberWindow===4 && <AdminPanelHourRashodVSP/> }
          {numberWindow===5 && <AdminPanelLogging/> }
-         {numberWindow===6 && <AdminPanelMaket17/> }
       </div>
    )
 }

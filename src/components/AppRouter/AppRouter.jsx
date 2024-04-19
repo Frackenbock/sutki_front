@@ -16,6 +16,7 @@ import VSP from '../../pages/VSP/VSP';
 import AdminPanel from '../../pages/AdminPanel/AdminPanel';
 import RashodStokVirab from '../../pages/RashodStokVirab/RashodStokVirab';
 import MaketParams from '../../pages/MaketParams/MaketParams';
+import Maket17Data from '../../pages/Maket17Data/Maket17Data';
 
 function AppRouter(){
     return(
@@ -24,7 +25,8 @@ function AppRouter(){
                 <Route index element={<StartPage/>}/>
                 <Route path='/pbr_aiiskue' element={<PbrAiiskue/>}/> 
                 <Route path='/pbr' element={<PBR/>}/>
-                <Route path='/maket17' element={<Maket17/>}/>
+                <Route path='/maket17data' element={<Maket17Data/>}/>
+                <Route path='/maket17mail' element={<Maket17/>}/>
                 <Route path='/maketparams' element={<MaketParams/>}/>
                 <Route path='/charts' element={<Charts/>}/>
                 <Route path='/vsp' element={<VSP/>}/>

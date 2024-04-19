@@ -1,13 +1,15 @@
-import React,{useState} from "react";
+import React from "react";
 import { useSelector,useDispatch } from "react-redux";
-import classes from"./AdminPanelMaket17.module.css";
+import { useNavigate } from "react-router-dom";
+import classes from"./Maket17Data.module.css";
 import AdminPanelMaket from "../../API/fetchForAdminMaket17";
-import Modal from "../../components/Modal/Modal"
 import SelectDiapazonDate from "../../components/UI/SelectDiapazonDate/SelectDiapazonDate";
+import {utils,writeFile} from 'xlsx';
 
-function  AdminPanelMaket17() {
+function  Maket17Data() {
    const apiMaket = new AdminPanelMaket();
    const dispatch = useDispatch();
+   const navigate = useNavigate();
    const arrMaket17 = useSelector((state)=>{return  state.admin.arrMaket17;});
 
    const dateBeginForReadMaketData = useSelector((state)=>{return  state.admin.dateBeginForReadMaket17;});
@@ -17,15 +19,82 @@ function  AdminPanelMaket17() {
       const dataToServer={
          dateBeginDiapazone:dateBeginForReadMaketData,
          dateEndDiapazone:dateEndForReadMaketData,
-      }
+      };
       apiMaket.getMaketData(dataToServer)
       .then((data)=>{
          dispatch({type:"CHANGE_ADMIN_ARR_RECORDS_MAKET17",payload:data})
-      })
+      });
+   };
+
+   function exportExel(){
+      if(arrMaket17.length!==0){
+         var exportArrMaket=[];// массив  данных для 
+         var wscolsArrMaket = [
+            {wch:12},{wch:18},{wch:16},
+            {wch:22},{wch:26},{wch:26},
+            {wch:28},{wch:26},{wch:26},
+            {wch:25},{wch:16},{wch:16},
+            {wch:18},{wch:22},{wch:18},
+            {wch:16},{wch:22},{wch:22},
+            {wch:22},{wch:22},{wch:21},
+
+            {wch:22},{wch:29},{wch:22},
+
+            {wch:25},{wch:31},{wch:39},
+
+
+         ];
+         for (let i=0;i<arrMaket17.length;i++){
+            exportArrMaket.push({
+               'Дата':arrMaket17[i].date,     'Направление ветра':arrMaket17[i].napravlenie_vetra_8_00, 'Скорость ветра':arrMaket17[i].scorost_vetra_8_00,  
+               'Средний верхний бьеф':arrMaket17[i].v_bief_sr,'Нижний бьеф на 8 часов утра':arrMaket17[i].n_bief_8_00,'Верхний бьеф на 8 часов утра':arrMaket17[i].v_bief_8_00,
+               'Средний нижний бьеф за вчера':arrMaket17[i].n_bief_sr_old, 'Нижний бьеф максимальный':arrMaket17[i].n_bief_max,'Нижний бьеф минимальный':arrMaket17[i].n_bief_min, 
+               'Средний напор за сутки':arrMaket17[i].napor_sr_sutki,
+               'Полный приток':arrMaket17[i].polni_pritok,
+               'Боковой приток':arrMaket17[i].bokovoi_pritok, 
+               'Суммарный расход':arrMaket17[i].rashod_sum_n_bief,
+               'Расход через турбины':arrMaket17[i].rashod_turbin,
+               'Расход через ВСП':arrMaket17[i].rashod_vodosbros, 
+               'Расход на ХХ':arrMaket17[i].rashod_holost_hod,
+               'Расход на фильтрацию':arrMaket17[i].rashod_filtr, 
+               'Расход на шлюзование':arrMaket17[i].rashod_shluz,
+               'Максимальная нагрузка':arrMaket17[i].max_nagr_ges, 
+               'Минимальная нагрузка':arrMaket17[i].min_nagr_ges,
+               'Агрегатов в работе':arrMaket17[i].kolvo_rab_agr, 
+               'Агрегатов в ремонте':arrMaket17[i].agr_rem,
+               'Суммарная мощность в ремонте':arrMaket17[i].sum_moshn_v_rem, 
+               'Суммарная выработка':arrMaket17[i].sum_virabotka,
+               'Выработка с начала месяца':arrMaket17[i].virabotka_s_nach_mes, 
+               'Собственное потребление за сутки':arrMaket17[i].sobstv_sut_potr,
+               'Собственное потребление с начала месяца':arrMaket17[i].sobstv_potr_nach_mes, 
+
+            })
+         };
+
+         var wb = utils.book_new();
+         var wsMaketTable = utils.json_to_sheet(exportArrMaket);
+         wsMaketTable['!cols'] = wscolsArrMaket;
+
+         utils.book_append_sheet(wb,wsMaketTable, 'Главная таблица');
+
+         writeFile(wb,`Таблица данных макетов с ${dateBeginForReadMaketData} до ${dateEndForReadMaketData}.xlsx`)
+      }else{
+         return;
+      }  
    }
 
    return (
-    <div className={classes.divMainAdminMaket}>
+    <div className={classes.divMainAdminMaket}>  
+      <div className={classes.buttonReturnBlokAndTitle}>
+         <button 
+            className={classes.buttonReturn}
+            onClick={()=>{navigate("/maket17mail")}}
+         > {`Возврат к макету`}</button> 
+         <button 
+            className={classes.buttonReturn}
+            onClick={()=>{exportExel()}}
+         > {`Выгрузка таблицы в Exel`}</button> 
+      </div>
       <span className={classes.spanTitlePageAdminMaket}>{"Данные Макета №17"}</span>
       <SelectDiapazonDate
          dateBegin = {dateBeginForReadMaketData}
@@ -117,4 +186,4 @@ function  AdminPanelMaket17() {
     </div>
    )
 }
-export default AdminPanelMaket17;
+export default Maket17Data;
