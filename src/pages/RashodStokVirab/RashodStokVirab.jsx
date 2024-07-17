@@ -148,7 +148,7 @@ function  RashodStokVirab() {
                   <span style={{fontSize:'large',marginLeft:"40%"}}>{"График среднесуточного расхода"}</span>
                   <LineChart
                      width={1100}
-                     height={400}
+                     height={390}
                      data={arrData}
                      margin={{top: 20, bottom: 10}}
                   >
@@ -171,7 +171,7 @@ function  RashodStokVirab() {
                   <span style={{fontSize:'large',marginLeft:"45%"}}>{"График выработки"}</span>
                   <LineChart
                      width={1100}
-                     height={400}
+                     height={390}
                      data={arrData}
                      margin={{top: 20, bottom: 10}}
                   >

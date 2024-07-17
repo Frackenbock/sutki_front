@@ -1,13 +1,12 @@
 .cont{
-    width: 100vw;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding-top: 1%;
+    padding-top: 0.1vh;
 }
 .otobr{
-    margin-top: 1%;
+    margin-top: 0.1vh;
     display: flex;
     flex-direction: row;
     width: 90vw;
@@ -24,7 +23,6 @@
 .scroll_table_body{
 	height: 60vh;
 	overflow-x: auto;
-	margin-top: 0px;
 	margin-bottom: 20px;
 }
 
