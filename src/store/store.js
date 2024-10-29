@@ -52,6 +52,8 @@ const rashodStokVirabState={
   virabData : '',
   stokData : '',
   rashodData : '',
+  dateBegin:'',
+  dateEnd:''
 };
 
 const aiisPbrState = {
@@ -185,6 +187,8 @@ function rashodStokVirabReducer (state=rashodStokVirabState,action){
       case "CHANGE_TOTAL_VIRAB_DATA":return {...state, virabData:action.payload};
       case "CHANGE_TOTAL_STOK_DATA":return {...state, stokData:action.payload};
       case "CHANGE_TOTAL_RASHOD_DATA":return {...state, rashodData:action.payload};
+      case "CHANGE_RASHOD_STOK_VIRAB_BEGIN_DATE":return {...state, dateBegin:action.payload};
+      case "CHANGE_RASHOD_STOK_VIRAB_END_DATE":return {...state, dateEnd:action.payload};
       default:return state;
     }
 };

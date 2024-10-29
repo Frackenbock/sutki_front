@@ -9,8 +9,10 @@ import normalizeDate from "../../utils/normalizeDate";
 function  RashodStokVirab() {
    const fetchAdmin= new fetch()
    const dispatch = useDispatch();
-   const [dateBeginDiapazone,dateBeginDiapazon] = useState('')
-   const [dateEndDiapazone,setDateEndDiapazone] = useState('')
+   const dateBeginDiapazone =useSelector((state)=>{return state.rashodStokVirab.dateBegin})
+   const dateEndDiapazone =useSelector((state)=>{return state.rashodStokVirab.dateEnd})
+
+
    const arrData = useSelector((state)=>{return  state.rashodStokVirab.arrData;});
    const virabData = useSelector((state)=>{return  state.rashodStokVirab.virabData;});
    const stokData = useSelector((state)=>{return  state.rashodStokVirab.stokData;});
@@ -25,11 +27,11 @@ function  RashodStokVirab() {
    ]
 
    function changeDateBeginDiapazon(e){
-      dateBeginDiapazon(e.target.value)
+      dispatch(({type:"CHANGE_RASHOD_STOK_VIRAB_BEGIN_DATE",payload:e.target.value}))
    }
 
    function changeDateEndDiapazon(e){
-      setDateEndDiapazone(e.target.value)
+      dispatch(({type:"CHANGE_RASHOD_STOK_VIRAB_END_DATE",payload:e.target.value}))
    }
 
    function readBDRashod(){

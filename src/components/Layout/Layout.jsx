@@ -18,10 +18,6 @@ function Layout() {
   const date = useSelector((state)=>{return  state.sutki.date;});
 
 
-  useEffect(()=>{
-    console.log(date)
-  },[])
-
  function closeModal(){// Закрытие любой модалке
     setModal(false);
  };
