@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import cl from "./layout.module.css";
 import Button from "../UI/Button_layout/Button";
@@ -14,11 +14,15 @@ function Layout() {
   const [placeholder,setPlaceholder]=useState('Введите пароль'); //Надпись для поля ввода пароля
   const passw = useSelector((state)=>{return state.admin.passw});//сохранённый пароль (для сравнения с вводимым) 
 
-  const date = useSelector((state)=>{
-    return  state.date
-   })
 
-  function closeModal(){// Закрытие любой модалке
+  const date = useSelector((state)=>{return  state.sutki.date;});
+
+
+  useEffect(()=>{
+    console.log(date)
+  },[])
+
+ function closeModal(){// Закрытие любой модалке
     setModal(false);
  };
  function checkPassword(e){
