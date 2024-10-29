@@ -16,7 +16,16 @@ function PBR (){
          };
         getApiPbr.getDataPbr(normDate)
         .then((data)=>{
-            dispatch({type:"CHANGE_PBR_ARR",payload:data});
+            let arrNames=[];
+            let arr=[];
+            for(let i=0;i<data.length;i++){
+              if(!arrNames.includes(data[i][0])){
+                    arrNames.push(data[i][0])
+                    arr.push(data[i])
+                }
+            }
+            console.log(arr,data)
+            dispatch({type:"CHANGE_PBR_ARR",payload:arr});
         })
     },[date]);
 
@@ -39,7 +48,7 @@ function PBR (){
                 <tbody>
                     {
                         pbrArr.map((str)=>{
-                            if(str[0]!==0){
+                            if(str[0]!=='00'){
                                 return(
                                     <tr key={str[0]}> 
                                         <td>{`${str[0]}:00`}</td><td>{(Number(str[2])).toFixed(3)}</td><td>{str[3]}</td>

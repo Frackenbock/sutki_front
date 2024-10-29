@@ -82,7 +82,7 @@ function  RashodStokVirab() {
    }
    return (
       <div className={classes.cont}>
-         <span style={{fontSize:'1.8vw',marginBottom:'1vh'}}>{"Данные среднесуточного расхода, стока и выработки"}</span>
+         <span style={{fontSize:'1.8vw',marginBottom:'1.5vh'}}>{"Данные среднесуточного расхода, стока и выработки"}</span>
          <SelectDiapazonDate 
             dateBegin = {dateBeginDiapazone}
             dateEnd = {dateEndDiapazone}
@@ -90,7 +90,6 @@ function  RashodStokVirab() {
             changeDateEnd={changeDateEndDiapazon}
             readBD={readBDRashod}
             text = {"Прочитать БД"}/>
-         <span style={{fontSize:'large',marginLeft:"-65%"}}>{titleDates}</span>
          <div className={classes.otobr}>
             <div>
                <div style={{marginBottom:'5%'}}>
@@ -140,7 +139,8 @@ function  RashodStokVirab() {
                   <hr></hr>
                   <span style={{fontSize:'0.8vw'}}>{virabData}</span><br/>
                   <span style={{fontSize:'0.8vw',marginBottom:'5%'}}>{stokData}</span><br/>
-                  <span style={{fontSize:'0.8vw'}}>{rashodData}</span>
+                  <span style={{fontSize:'0.8vw'}}>{rashodData}</span><br/><br/>
+                  <span style={{fontSize:'0.9vw'}}>{titleDates}</span>
                </div>
             </div>
             <div>
@@ -148,7 +148,7 @@ function  RashodStokVirab() {
                   <span style={{fontSize:'large',marginLeft:"40%"}}>{"График среднесуточного расхода"}</span>
                   <LineChart
                      width={1100}
-                     height={390}
+                     height={380}
                      data={arrData}
                      margin={{top: 20, bottom: 10}}
                   >
@@ -171,7 +171,7 @@ function  RashodStokVirab() {
                   <span style={{fontSize:'large',marginLeft:"45%"}}>{"График выработки"}</span>
                   <LineChart
                      width={1100}
-                     height={390}
+                     height={380}
                      data={arrData}
                      margin={{top: 20, bottom: 10}}
                   >
