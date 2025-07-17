@@ -92,8 +92,8 @@ function  Maket17() {
 		 operatingUnits:operatingUnits.replace(",","."),
 		 unitsUnderRepair:unitsUnderRepair.replace(",","."),
 		 totalPowerInRepair:totalPowerInRepair.replace(",","."),
-		 dailyOutput:String(Math.trunc(Number(dailyOutput.replace(",",".")))/1000),
-		 monthOutput:String(Math.trunc(Number(monthOutput.replace(",",".")))/1000),
+		 dailyOutput:String(Math.round(Number(dailyOutput.replace(",",".")))/1000),
+		 monthOutput:String(Math.round(Number(monthOutput.replace(",",".")))/1000),
 		 sobstSutPotr: sobstSutPotr.replace(",","."),
 		 sobstSutPotrNachMes: sobstSutPotrNachMes.replace(",",".")};
 

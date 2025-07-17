@@ -338,9 +338,9 @@ function Itog (){
                         </tr>
                         <tr >
                             <td className={[cl.borderBottom,cl.borderTop].join(' ')}></td>
+                            <td className={[cl.borderBottom,cl.borderTop,cl.borderRight].join(' ')}>{"Напор (м)"}</td>
                             <td className={[cl.borderBottom,cl.borderTop].join(' ')}>{"Верхний бьеф (м)"}</td>
                             <td className={[cl.borderBottom,cl.borderTop].join(' ')}>{"Нижний бьеф (м)"}</td>
-                            <td className={[cl.borderBottom,cl.borderTop,cl.borderRight].join(' ')}>{"Напор (м)"}</td>
                             <td >{"Расход Х.Х. "}</td>
                             <td >{"(м3/сек.)"}</td>
                             <td>{RashodHH}</td>
@@ -354,7 +354,7 @@ function Itog (){
                             <td>{"Протечки"}</td><td>{"(м3/сек.)"}</td><td>{Protechki}</td>
                         </tr>
                         <tr>
-                            <td>{"Среднее"}</td><td></td><td></td><td className={cl.borderRight}>{sredniyNapor}</td>
+                            <td>{"Среднее"}</td><td >{sredniyNapor}</td> <td></td> <td className={cl.borderRight}></td>
                             <td >{"Выработка "}</td><td >{" (МВтч)"}</td><td>{totalPower}</td>
                         </tr>
                     </tbody>

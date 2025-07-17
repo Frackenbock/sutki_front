@@ -1,8 +1,7 @@
 function normalizeItogData(data){
-
     for (let i=0;i<=23;i++){
-        data.active[i][1]=String((data.active[i][1]/1000).toFixed(2)).replace(".",",")
-        data.reactive[i][1]=String((data.reactive[i][1]/1000).toFixed(2)).replace(".",",")
+        data.active[i][1]=String((data.active[i][1]/1000).toFixed(3)).replace(".",",")
+        data.reactive[i][1]=String((data.reactive[i][1]/1000).toFixed(3)).replace(".",",")
     };
    let ActivePower= {gen1:data.active[0][1],gen2:data.active[1][1],gen3:data.active[2][1],gen4:data.active[3][1],gen5:data.active[4][1],gen6:data.active[5][1],
     gen7:data.active[6][1],gen8:data.active[7][1],viazn:data.active[8][1],semenov:data.active[9][1], malah_1:data.active[10][1],levob_1:data.active[11][1],
