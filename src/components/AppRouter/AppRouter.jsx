@@ -17,6 +17,7 @@ import AdminPanel from '../../pages/AdminPanel/AdminPanel';
 import RashodStokVirab from '../../pages/RashodStokVirab/RashodStokVirab';
 import MaketParams from '../../pages/MaketParams/MaketParams';
 import Maket17Data from '../../pages/Maket17Data/Maket17Data';
+import Raport from '../../pages/Raport/Raport';
 
 function AppRouter(){
     return(
@@ -33,6 +34,7 @@ function AppRouter(){
                 <Route path='/listadress' element={<ListAdress/>}/>
                 <Route path='/gfytkmflvbyf' element={<AdminPanel/>}/>
                 <Route path='/srednrashod' element={<RashodStokVirab/>}/>
+                <Route path='/raport' element={<Raport/>}/>
                 <Route path='/sutki' element={<Sutki/>}>
                      <Route index element={<MainTable/>}/> 
                      <Route path='/sutki/maintable' element={<MainTable/>}/>

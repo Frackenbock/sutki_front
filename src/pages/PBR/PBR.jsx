@@ -24,7 +24,6 @@ function PBR (){
                     arr.push(data[i])
                 }
             }
-            console.log(arr,data)
             dispatch({type:"CHANGE_PBR_ARR",payload:arr});
         })
     },[date]);

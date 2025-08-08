@@ -1,0 +1,39 @@
+.mainRaportCont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+}
+.raportCont{
+    margin-top: 3vh;
+    display: flex;
+    width: 92vw;
+    justify-content: space-between ;
+    align-items: center;
+    flex-direction: row;
+}
+
+.raportFirstTable{
+    width: 50vw;
+    border-collapse: collapse;
+    border: 2px solid black;
+    font-size: 0.8vw;
+    margin-top: 1vh;
+}
+.raportSecondTable{
+    width: 40vw;
+    border-collapse: collapse;
+    border: 2px solid black;
+    font-size: 0.8vw;
+    margin-top: 1vh;
+}
+
+.thPbr{
+    border: 1px solid black;
+    text-align: center;
+    width: 3vw;
+}
+
+
+
+

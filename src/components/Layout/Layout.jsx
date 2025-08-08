@@ -25,7 +25,8 @@ function Layout() {
     if(e.keyCode===13){
       if(e.target.value===passw){
         navigate('/gfytkmflvbyf')
-        dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:{sutkiButton:'',vspButton:'',pbrAiisButton:'',pbrButton:'',maketButton:'',adminButton:'lightgreen'}});
+        dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:
+          {sutkiButton:'',vspButton:'',pbrAiisButton:'',pbrButton:'',maketButton:'',adminButton:'lightgreen'}});
         setPassword('')
         setPlaceholder('')
         closeModal();
@@ -49,7 +50,8 @@ function Layout() {
               value={"Расход через генераторы"}
               onClick={() => {
                 navigate("/sutki");
-                dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:{sutkiButton:'lightgreen',vspButton:'',pbrAiisButton:'',pbrButton:'',maketButton:'',adminButton:'',srRashodButton:''}});
+                dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:
+                  {sutkiButton:'lightgreen',vspButton:'',pbrAiisButton:'',pbrButton:'',maketButton:'',adminButton:'',srRashodButton:'',raportButton:'',}});
                 dispatch({type:"CHANGE_BUTTONS_SUTKI",payload:{mainButton:'lightgreen',stokButton:'',rashodButton:'',itogButton:''}});
               }}
             />
@@ -58,7 +60,8 @@ function Layout() {
               value={"Расход через ВСП"}
               onClick={() => {
                 navigate("/vsp");
-                dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:{sutkiButton:'',vspButton:'lightgreen',pbrAiisButton:'',pbrButton:'',maketButton:'',adminButton:'',srRashodButton:''}});
+                dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:
+                  {sutkiButton:'',vspButton:'lightgreen',pbrAiisButton:'',pbrButton:'',maketButton:'',adminButton:'',srRashodButton:'',raportButton:'',}});
               }}
             />
             <Button
@@ -66,7 +69,8 @@ function Layout() {
               value={"ПБР АИИСКУЭ"}
               onClick={() => {
                 navigate("/pbr_aiiskue");
-                dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:{sutkiButton:'',vspButton:'',pbrAiisButton:'lightgreen',pbrButton:'',maketButton:'',adminButton:'',srRashodButton:''}});
+                dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:
+                  {sutkiButton:'',vspButton:'',pbrAiisButton:'lightgreen',pbrButton:'',maketButton:'',adminButton:'',srRashodButton:'',raportButton:'',}});
               }}
             />
             <Button
@@ -74,7 +78,8 @@ function Layout() {
               value={"ПБР"}
               onClick={() => {
                 navigate("/pbr");
-                dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:{sutkiButton:'',vspButton:'',pbrAiisButton:'',pbrButton:'lightgreen',maketButton:'',adminButton:'',srRashodButton:''}});
+                dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:
+                  {sutkiButton:'',vspButton:'',pbrAiisButton:'',pbrButton:'lightgreen',maketButton:'',adminButton:'',srRashodButton:'',raportButton:'',}});
               }}
             />
             <Button
@@ -82,7 +87,17 @@ function Layout() {
               value={"Maket №17"}
               onClick={() => {
                 navigate("/maket17mail");
-                dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:{sutkiButton:'',vspButton:'',pbrAiisButton:'',pbrButton:'',maketButton:'lightgreen',adminButton:'',srRashodButton:''}});
+                dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:
+                  {sutkiButton:'',vspButton:'',pbrAiisButton:'',pbrButton:'',maketButton:'lightgreen',adminButton:'',srRashodButton:'',raportButton:'',}});
+              }}
+            />
+            <Button
+              style={{backgroundColor:buttonsLayout.raportButton}}
+              value={"Суточная справка"}
+              onClick={() => {
+                navigate("/raport");
+                dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:
+                  {sutkiButton:'',vspButton:'',pbrAiisButton:'',pbrButton:'',maketButton:'',adminButton:'',srRashodButton:'',raportButton:'lightgreen',}});
               }}
             />
             <Button
@@ -90,9 +105,11 @@ function Layout() {
               value={"Расход, сток и выработка"}
               onClick={() => {
                 navigate("/srednrashod");
-                dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:{sutkiButton:'',vspButton:'',pbrAiisButton:'',pbrButton:'',maketButton:'',adminButton:'',srRashodButton:'lightgreen'}});
+                dispatch({type:"CHANGE_BUTTONS_LAYOUT",payload:
+                  {sutkiButton:'',vspButton:'',pbrAiisButton:'',pbrButton:'',maketButton:'',adminButton:'',srRashodButton:'lightgreen',raportButton:'',}});
               }}
             />
+
           </div>
           <div className={cl.date}>
              <Button

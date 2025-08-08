@@ -10,10 +10,10 @@ function  Maket17Data() {
    const apiMaket = new AdminPanelMaket();
    const dispatch = useDispatch();
    const navigate = useNavigate();
-   const arrMaket17 = useSelector((state)=>{return  state.admin.arrMaket17;});
+   const arrMaket17 = useSelector((state)=>{return  state.maket.arrMaket17;});
 
-   const dateBeginForReadMaketData = useSelector((state)=>{return  state.admin.dateBeginForReadMaket17;});
-   const dateEndForReadMaketData = useSelector((state)=>{return  state.admin.dateEndForReadMaket17;});
+   const dateBeginForReadMaketData = useSelector((state)=>{return  state.maket.dateBeginForReadMaket17;});
+   const dateEndForReadMaketData = useSelector((state)=>{return  state.maket.dateEndForReadMaket17;});
 
    function readMaketData(){
       const dataToServer={

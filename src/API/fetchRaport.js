@@ -1,8 +1,8 @@
 import fetchWrapper from "./fetchWrapper";
 
-class fetchPbr {
+class fetchRaport {
   getDataPbr(date) {
-    return fetchWrapper(`pbr/getdatapbr`, {
+    return fetchWrapper(`raport/getdatapbr`, {
       method:'POST',
       body:JSON.stringify(date),
       headers: {
@@ -12,4 +12,4 @@ class fetchPbr {
   };
 };
 
-export default fetchPbr;
+export default fetchRaport;
