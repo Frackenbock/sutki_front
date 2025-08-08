@@ -12,24 +12,14 @@ function Raport (){
     const raportPbrArr = useSelector((state)=>{return  state.raport.raportPbrArr});
     
     useEffect(()=>{
-        const normDate = {
-            date: normalizeDate(date),
-         };
-        getApiRaport.getDataPbr(normDate)
-        .then((data)=>{
-            // let arrNames=[];
-            // let arr=[];
-            // for(let i=0;i<data.length;i++){
-            //   if(!arrNames.includes(data[i][0])){
-            //         arrNames.push(data[i][0])
-            //         arr.push(data[i])
-            //     }
-            // }
-            // console.log(normalizeDateYesterday(date),normalizeDate(date))
-            // dispatch({type:"CHANGE_PBR_ARR",payload:arr});
-            console.log(data)
-        })
-    },[date]);
+        if(raportPbrArr[0][0]===''){
+            const normDate = {date: normalizeDate(date),};
+            getApiRaport.getDataPbr(normDate)
+            .then((data)=>{
+                dispatch({type:"CHANGE_RAPORT_PBR_ARR",payload:data});
+            })
+        }   
+    },[]);
 
     return (
         <div className={cl.mainRaportCont}>
@@ -156,79 +146,79 @@ function Raport (){
                     </thead>
                     <tbody>
                         <tr> 
-                            <td>06:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>06:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[0][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>07:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>07:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[1][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                          <tr> 
-                            <td>08:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>08:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[2][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>09:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>09:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[3][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>10:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>10:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[4][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>11:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>11:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[5][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>12:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>12:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[6][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>13:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>13:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[7][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>14:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>14:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[8][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>15:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>15:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[9][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>16:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>16:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[10][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>17:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>17:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[11][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>18:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>18:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[12][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>19:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>19:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[13][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>20:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>20:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[14][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>21:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>21:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[15][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>22:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>22:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[16][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>23:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>23:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[17][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>24:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>24:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[18][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>01:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>01:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[19][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>02:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>02:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[20][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>03:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>03:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[21][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>04:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>04:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[22][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>05:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>05:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[23][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                         <tr> 
-                            <td>06:00</td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+                            <td>06:00</td> <td></td> <td></td> <td></td> <td>{raportPbrArr[24][2]}</td> <td></td> <td></td> <td></td> <td></td> 
                         </tr>
                     </tbody>
                     <tfoot></tfoot>

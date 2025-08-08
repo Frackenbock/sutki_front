@@ -3,7 +3,8 @@ import emptyCellsSutki from '../data/dataForSutkiTable'
 import emptyRashod from '../data/dataForRashod'
 import emptyStok from '../data/dataForStok';
 import emptyAiisPbr from '../data/dataForAiisPbr';
-import emptyItog from '../data/dataForItogTable'
+import emptyItog from '../data/dataForItogTable';
+import emptyRaport from '../data/dataRaport'
 
 let date = new Date();
 let year = date.getFullYear();
@@ -17,6 +18,7 @@ const arrData = new emptyCellsSutki();
 const rashod = new emptyRashod();
 const stok = new emptyStok();
 const itog = new emptyItog()
+const raport = new emptyRaport()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 /////////Страница Расчёта расхода воды////////////////////////////////////////////////
@@ -263,11 +265,11 @@ function pbrReducer (state=pbrState,action){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////Страница "Суточная справка" //////////////////////////////////////////////////////////////////////////////
 const raportState = {
-  raportPbrArr:[],//массив для отображения данных и файлов ПБР в таблице
+  raportPbrArr:raport.dataPBRRaport,
 };
-function raportReducer (state=pbrState,action){
+function raportReducer (state=raportState,action){
     switch(action.type){
-      case "CHANGE_RAPORTP_PBR_ARR":return {...state, raportPbrArr:action.payload};
+      case "CHANGE_RAPORT_PBR_ARR":return {...state, raportPbrArr:action.payload};
       default:return state;
     }
 };
