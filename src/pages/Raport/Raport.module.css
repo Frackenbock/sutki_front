@@ -1,3 +1,11 @@
+input, button{
+    font-size: 0.7vw;
+}
+.thRaport{
+    border: 1px solid black;
+    text-align: center;
+    width: 3vw;
+}
 .mainRaportCont{
     display: flex;
     justify-content: center;
@@ -12,7 +20,6 @@
     align-items: center;
     flex-direction: row;
 }
-
 .raportFirstTable{
     width: 50vw;
     border-collapse: collapse;
@@ -26,12 +33,49 @@
     border: 2px solid black;
     font-size: 0.8vw;
     margin-top: 1vh;
+    margin-bottom: 2vh;
+}
+.inputInRightTable{
+    width: 2vw;
+    height: 1.1vh;
+    text-align: center;
+    font-size: 0.7vw;
 }
 
-.thPbr{
-    border: 1px solid black;
+.inputInLeftTable{
+    width: 4vw;
+    height: 1.1vh;
     text-align: center;
-    width: 3vw;
+    font-size: 0.7vw;
+}
+
+.divWithInputDateAndTitle{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-between;
+    width: 40vw;
+    font-size: 0.8vw;
+    margin-bottom: 1.5vh;
+}
+.divWithInputDateTitle{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+    width: 23vw;
+}
+.avarijaTextarea{
+    width: fill-available;
+    height: 6vh;
+    resize: none;
+    font-size: 0.8vw;
+}
+.remontTextarea{
+    width: fill-available;
+    height: 8.5vh;
+    resize: none;
+    font-size: 0.8vw;
 }
 
 

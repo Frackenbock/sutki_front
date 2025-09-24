@@ -266,10 +266,34 @@ function pbrReducer (state=pbrState,action){
 ////////////Страница "Суточная справка" //////////////////////////////////////////////////////////////////////////////
 const raportState = {
   raportPbrArr:raport.dataPBRRaport,
+  raportAIISArr:raport.dataAIISRaport,
+  dateRaport:fullDate,
+  naporsRaport:raport.dataNaporsRaport,
+  raportUDGArr:raport.dataUDGRaport,
+  maketRaportData:raport.dataMaket,
+  otklonRAportData:raport.dataOtklon,
+  naprRaportData:raport.dataNapr,
+  uvbRaportData:raport.dataUVB,
+  unbRaportData:raport.dataUNB,
+  dataTodayNapors:raport.dataTodayNapors,
+  titleRaportTable:'',
+  dataFirstTable:raport.dataFirstTable
 };
 function raportReducer (state=raportState,action){
     switch(action.type){
+      case "CHANGE_RAPORT_DATE":return {...state, dateRaport:action.payload};
       case "CHANGE_RAPORT_PBR_ARR":return {...state, raportPbrArr:action.payload};
+      case "CHANGE_RAPORT_UDG_ARR":return {...state, raportUDGArr:action.payload};
+      case "CHANGE_RAPORT_NAPORS_ARR":return {...state, naporsRaport:action.payload};
+      case "CHANGE_RAPORT_AIIS_ARR":return {...state, raportAIISArr:action.payload};
+      case "CHANGE_RAPORT_MAKET_ARR":return {...state, maketRaportData:action.payload};
+      case "CHANGE_RAPORT_OTKLON_ARR":return {...state, otklonRAportData:action.payload};
+      case "CHANGE_RAPORT_NAPR_ARR":return {...state, naprRaportData:action.payload};
+      case "CHANGE_RAPORT_UVB_ARR":return {...state, uvbRaportData:action.payload};
+      case "CHANGE_RAPORT_UNB_ARR":return {...state, unbRaportData:action.payload};
+      case "CHANGE_RAPORT_TODAY_NAPORS_ARR":return {...state, dataTodayNapors:action.payload};
+      case "CHANGE_RAPORT_TITLE_TABLE":return {...state, titleRaportTable:action.payload};
+      case "CHANGE_RAPORT_DATA_FIRST_TABLE":return {...state, dataFirstTable:action.payload};
       default:return state;
     }
 };

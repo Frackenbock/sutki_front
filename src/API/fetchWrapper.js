@@ -1,5 +1,5 @@
 ﻿// const URL = "http://10.18.199.4:5001";
-const URL = "http://10.18.2.36:5001";
+const URL = "http://10.18.100.112:5001";
 function fetchWrapper(path, options) {
   return fetch(`${URL}/${path}`, options).then((res) => {
     if (res.ok) {
