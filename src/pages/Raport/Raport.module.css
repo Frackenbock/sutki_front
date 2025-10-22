@@ -43,7 +43,7 @@ input, button{
 }
 
 .inputInLeftTable{
-    width: 4vw;
+    width: 8vw;
     height: 1.1vh;
     text-align: center;
     font-size: 0.7vw;
@@ -70,12 +70,14 @@ input, button{
     height: 6vh;
     resize: none;
     font-size: 0.8vw;
+    text-align: center;
 }
 .remontTextarea{
     width: fill-available;
     height: 8.5vh;
     resize: none;
     font-size: 0.8vw;
+    text-align: center;
 }
 
 

@@ -23,17 +23,22 @@ class dataRaport {
         sobstv_potr_nach_mes: "", sobstv_sut_potr: "", sum_moshn_v_rem: "",sum_virabotka:"",v_bief_8_00:"",v_bief_sr:"",value_rashod:"",value_stok:"",
         value_virabotka:"",virabotka_s_nach_mes:""
     }
+
+
+    
     dataOtklon = ["","","","","","","","","","","","","","","","","","","","","","","","","",] 
-    dataNapr = {p1:"115",p2:"115",p3:"115",p4:"115",p5:"115",p6:"115",p7:"115",p8:"115",p9:"115",p10:"115",p11:"115",p12:"115",p13:"115",p14:"115",p15:"115",
+    dataNapr = {date:"",p1:"115",p2:"115",p3:"115",p4:"115",p5:"115",p6:"115",p7:"115",p8:"115",p9:"115",p10:"115",p11:"115",p12:"115",p13:"115",p14:"115",p15:"115",
         p16:"115",p17:"115",p18:"115",p19:"115",p20:"115",p21:"115",p22:"115",p23:"115",p24:"115",p25:"115",} 
-    dataUVB = {p1:"",p2:"",p3:"",p4:"",p5:"",p6:"",p7:"",p8:"",p9:"",p10:"",p11:"",p12:"",p13:"",p14:"",p15:"",
+    dataUVB = {date:"",p1:"",p2:"",p3:"",p4:"",p5:"",p6:"",p7:"",p8:"",p9:"",p10:"",p11:"",p12:"",p13:"",p14:"",p15:"",
         p16:"",p17:"",p18:"",p19:"",p20:"",p21:"",p22:"",p23:"",p24:"",p25:"",} 
-    dataUNB = {p1:"",p2:"",p3:"",p4:"",p5:"",p6:"",p7:"",p8:"",p9:"",p10:"",p11:"",p12:"",p13:"",p14:"",p15:"",
+    dataUNB = {date:"",p1:"",p2:"",p3:"",p4:"",p5:"",p6:"",p7:"",p8:"",p9:"",p10:"",p11:"",p12:"",p13:"",p14:"",p15:"",
         p16:"",p17:"",p18:"",p19:"",p20:"",p21:"",p22:"",p23:"",p24:"",p25:"",} 
     dataTodayNapors={p20:'',p21:'',p22:'',p23:'',p24:'',p25:'',}
 
     dataFirstTable={
-        remont:'', incident:'',unb_06:'',uvb_06:'', rash_rybinsk_ges:'',
+        remont:'', incident:'',unb_06:'',
+        uvb_06:'', rash_rybinsk_ges:'',min_nagr_s_06_do_06:'',
+        summarn_pritok:'',nss:'',sn_normativ_month:'',sn_sutki:'',sn_month:'',
     }
 }
 export default dataRaport;

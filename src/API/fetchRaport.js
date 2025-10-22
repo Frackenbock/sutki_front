@@ -1,8 +1,8 @@
 import fetchWrapper from "./fetchWrapper";
 
 class fetchRaport {
-  getDataPbr(date) {
-    return fetchWrapper(`raport/getdatapbr`, {
+  getAllDataRaport(date) {
+    return fetchWrapper(`raport/getalldataraport`, {
       method:'POST',
       body:JSON.stringify(date),
       headers: {
@@ -10,6 +10,18 @@ class fetchRaport {
       },
     });
   };
+
+  saveAllDataRaport(date) {
+    return fetchWrapper(`raport/savealldataraport`, {
+      method:'POST',
+      body:JSON.stringify(date),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
+
 };
 
 export default fetchRaport;

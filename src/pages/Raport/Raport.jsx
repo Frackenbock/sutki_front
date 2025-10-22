@@ -5,9 +5,11 @@ import cl from './Raport.module.css';
 import { useSelector,useDispatch } from "react-redux";
 import {createUdgArrRaport,createOtklUdgFactArrRaport,createRenderTableData} from '../../utils/pageRaportUtils';
 import Modal from '../../components/Modal/Modal';  
+import emptyRaport from '../../data/dataRaport'
 
 function Raport (){
-    const getApiRaport = new fetchRaport();
+    const emptyDataRaport = new emptyRaport()
+    const apiRaport = new fetchRaport();
     const dispatch = useDispatch();
     const date = useSelector((state)=>{return  state.raport.dateRaport });
     const raportPbrArr = useSelector((state)=>{return  state.raport.raportPbrArr});
@@ -31,6 +33,17 @@ function Raport (){
                                             raportUDGArr,raportPbrArr,raportAIISArr,otklonRAportData,dataTodayNapors);
        
 
+    function saveInputDataRaport(){
+        const dataToServer={
+            uvbRaportData,dataTodayNapors,unbRaportData,dataFirstTable,date: normalizeDate(date),
+        }
+        apiRaport.saveAllDataRaport(dataToServer)
+        .then((data)=>{
+            console.log(data)
+        })
+
+    }
+
     function closeModal(){
         setModalError(false);
         setModalMessage('');
@@ -47,12 +60,23 @@ function Raport (){
 
     function downloadRaportData(){
             const normDate = {date: normalizeDate(date),};
-            getApiRaport.getDataPbr(normDate)
+            apiRaport.getAllDataRaport(normDate)
             .then((data)=>{
+                console.log(data)
                 dispatch({type:"CHANGE_RAPORT_PBR_ARR",payload:data.itogPBRarr});
                 dispatch({type:"CHANGE_RAPORT_NAPORS_ARR",payload:data.itogArrNapors});
                 dispatch({type:"CHANGE_RAPORT_AIIS_ARR",payload:data.arrItogVirab});
                 dispatch({type:"CHANGE_RAPORT_MAKET_ARR",payload:data.raportMaketData});
+
+                if(!data.uvbRaport.err){dispatch({type:"CHANGE_RAPORT_UVB_ARR",payload:data.uvbRaport});                    
+                }else{dispatch({type:"CHANGE_RAPORT_UVB_ARR",payload:emptyDataRaport.dataUVB})};
+
+                if(!data.firstTable.err){dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:data.firstTable});                    
+                }else{dispatch({type:"CHANGE_RAPORT_UVB_ARR",payload:emptyDataRaport.dataFirstTable})};
+
+                if(!data.unbRaport.err){dispatch({type:"CHANGE_RAPORT_UNB_ARR",payload:data.unbRaport});                    
+                }else{dispatch({type:"CHANGE_RAPORT_UNB_ARR",payload:emptyDataRaport.dataUNB})};
+
                 dispatch({type:"CHANGE_RAPORT_OTKLON_ARR",payload:createOtklUdgFactArrRaport(createUdgArrRaport(data.itogPBRarr), data.arrItogVirab)});
                 dispatch({type:"CHANGE_RAPORT_UDG_ARR",payload:createUdgArrRaport(data.itogPBRarr)});
                 setMinNagruzka(Math.min(...(data.arrItogVirab.map((el)=>{
@@ -99,7 +123,7 @@ function Raport (){
                             <td>{`Расход через турбины`}</td><td>{maketRaportData.rashod_turbin}</td><td>{`м³/сек.`}</td>
                         </tr>
                         <tr>
-                            <td>{`Расход через водосливную плотину`}</td><td></td><td>{`м³/сек.`}</td>
+                            <td>{`Расход через водосливную плотину`}</td><td>{maketRaportData.rashod_vodosbros}</td><td>{`м³/сек.`}</td>
                         </tr>
                         <tr>
                             <td>{`Боковой приток за прошедшие сутки`}</td><td>{maketRaportData.bokovoi_pritok}</td><td>{`м³/сек.`}</td>
@@ -108,9 +132,9 @@ function Raport (){
                             <td>{`Среднесуточный расход Рыбинской ГЭС `}</td>
                             <td>
                                 <input type='text' 
-                                    value={dataFirstTable.uvb_06}
+                                    value={dataFirstTable.rash_rybinsk_ges}
                                     onChange={(e)=>{
-                                        dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:{...dataFirstTable,uvb_06:e.target.value}});}} 
+                                        dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:{...dataFirstTable,rash_rybinsk_ges:e.target.value}});}} 
                                     className={cl.inputInLeftTable}/>
                             </td>
                             <td>{`м³/сек.`}</td>
@@ -133,6 +157,7 @@ function Raport (){
                             <td>{`Уровень нижнего бьефа (на 06:00)`}</td>
                             <td>
                                 <input type='text' 
+                                    autoComplete={'off'}
                                     value={dataFirstTable.unb_06}
                                     onChange={(e)=>{
                                         dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:{...dataFirstTable,unb_06:e.target.value}});}} 
@@ -167,19 +192,42 @@ function Raport (){
                             </td> 
                         </tr>
                         <tr>
-                            <td>{`Начальник смены станции`}</td><td colSpan={"2"}></td> 
+                            <td>{`Начальник смены станции`}</td><td colSpan={"2"}>
+                                <input type='text' 
+                                    value={dataFirstTable.nss}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:{...dataFirstTable,nss:e.target.value}});}} 
+                                    className={cl.inputInLeftTable}/></td>
                         </tr>
                         <tr>
                             <td  colSpan={"3"}>{`Собственный максимум потребления на собственные нужды (КПЭ):`}</td>
                         </tr>
                         <tr>
-                            <td>{`норматив на месяц`}</td><td></td><td>{`МВт`}</td> 
+                            <td>{`норматив на месяц`}</td><td> 
+                                <input type='text' 
+                                    value={dataFirstTable.sn_normativ_month}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:{...dataFirstTable,sn_normativ_month:e.target.value}});}} 
+                                    className={cl.inputInLeftTable}/></td>
+                            <td>{`МВт`} </td> 
                         </tr>
                         <tr>
-                            <td>{`за сутки`}</td><td></td><td>{`МВт`}</td> 
+                            <td>{`за сутки`}</td><td>
+                                <input type='text' 
+                                    value={dataFirstTable.sn_sutki}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:{...dataFirstTable,sn_sutki:e.target.value}});}} 
+                                    className={cl.inputInLeftTable}/></td>
+                            <td>{`МВт`}</td> 
                         </tr>
                         <tr>
-                            <td>{`с начала месяца`}</td><td></td><td>{`МВт`}</td> 
+                            <td>{`с начала месяца`}</td><td>
+                                <input type='text' 
+                                    value={dataFirstTable.sn_month}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:{...dataFirstTable,sn_month:e.target.value}});}} 
+                                    className={cl.inputInLeftTable}/></td>
+                            <td>{`МВт`}</td> 
                         </tr>
                         <tr>
                             <td>{`Отметка ВБ Рыбинской ГЭС`}</td><td></td><td></td> 
@@ -249,22 +297,24 @@ function Raport (){
                                     <tr key={str.numb}>
                                         <td>{str.chas}</td>
                                         <td>
-                                            <input type='text' 
+                                            <input type='text'
+                                                autoComplete={'off'} 
                                                 id={str.idUVB}
                                                 onKeyDown={(e)=>isEnter(e,1,26)}
                                                 value={str.uvb}
                                                 onChange={(e)=>{
-                                                    uvbRaportData[str.numb]= e.target.value
+                                                    uvbRaportData[str.numb]= String(e.target.value).replace(",",".")
                                                     dispatch({type:"CHANGE_RAPORT_UVB_ARR",payload:{...uvbRaportData}});}} 
                                                 className={cl.inputInRightTable}/>
                                         </td>
                                         <td>
                                             <input type='text' 
                                                 id={str.idUNB}
+                                                autoComplete={'off'}
                                                 onKeyDown={(e)=>isEnter(e,26,51)}
                                                 value={str.unb}
                                                 onChange={(e)=>{
-                                                    unbRaportData[str.numb]= e.target.value
+                                                    unbRaportData[str.numb]= String(e.target.value).replace(",",".")
                                                     dispatch({type:"CHANGE_RAPORT_UNB_ARR",payload:{...unbRaportData}});}} 
                                                 className={cl.inputInRightTable}/>
                                         </td>
@@ -272,9 +322,10 @@ function Raport (){
                                             {str.napor===''?  
                                                  <input 
                                                     id={str.idNAP}
+                                                    autoComplete={'off'}
                                                     value={str.todayNapor}
                                                     onChange={(e)=>{
-                                                        dataTodayNapors[str.numb]= e.target.value
+                                                        dataTodayNapors[str.numb]= String(e.target.value).replace(",",".")
                                                         dispatch({type:"CHANGE_RAPORT_TODAY_NAPORS_ARR",payload:{...dataTodayNapors}});}} 
                                                     onKeyDown={(e)=>isEnter(e,51,57)}
                                                     className={cl.inputInRightTable}/>
@@ -287,6 +338,7 @@ function Raport (){
                                         <td>{str.aiiskue}</td>
                                         <td>
                                             <input type='text' value={str.naprjag}
+                                                autoComplete={'off'}
                                                 onChange={(e)=>{
                                                     naprRaportData[str.numb]= e.target.value
                                                     dispatch({type:"CHANGE_RAPORT_NAPR_ARR",payload:{...naprRaportData,p1:e.target.value}});}} 
@@ -299,10 +351,7 @@ function Raport (){
                         </tbody>
                         <tfoot></tfoot>
                     </table>
-                    <button 
-                        onClick={()=>{
-                            console.log(uvbRaportData,dataTodayNapors,unbRaportData)}
-                        }>
+                    <button onClick={()=>{saveInputDataRaport()}}>
                         Сохранить введённые данные
                     </button>
                 </div>

@@ -345,6 +345,10 @@ function Itog (){
                             <td >{"(м3/сек.)"}</td>
                             <td>{RashodHH}</td>
                         </tr>
+                                                <tr>
+                            <td>{"Среднее"}</td><td >{sredniyNapor}</td> <td></td> <td className={cl.borderRight}></td>
+                            <td >{"Выработка "}</td><td >{" (МВтч)"}</td><td>{totalPower}</td>
+                        </tr>
                         <tr>
                             <td>{"MIN"}</td><td></td><td></td><td className={cl.borderRight}></td>
                             <td >{"Уд. расход"}</td><td >{"(м3/кВт.)"}</td><td>{udelnRashod}</td>
@@ -352,10 +356,6 @@ function Itog (){
                         <tr>
                             <td>{"MAX"}</td><td></td><td></td><td className={cl.borderRight}></td>
                             <td>{"Протечки"}</td><td>{"(м3/сек.)"}</td><td>{Protechki}</td>
-                        </tr>
-                        <tr>
-                            <td>{"Среднее"}</td><td >{sredniyNapor}</td> <td></td> <td className={cl.borderRight}></td>
-                            <td >{"Выработка "}</td><td >{" (МВтч)"}</td><td>{totalPower}</td>
                         </tr>
                     </tbody>
                     <tfoot></tfoot>
