@@ -35,19 +35,7 @@ input, button{
     margin-top: 1vh;
     margin-bottom: 2vh;
 }
-.inputInRightTable{
-    width: 2vw;
-    height: 1.1vh;
-    text-align: center;
-    font-size: 0.7vw;
-}
 
-.inputInLeftTable{
-    width: 8vw;
-    height: 1.1vh;
-    text-align: center;
-    font-size: 0.7vw;
-}
 
 .divWithInputDateAndTitle{
     display: flex;
@@ -65,12 +53,13 @@ input, button{
     justify-content:space-around;
     width: 23vw;
 }
-.avarijaTextarea{
+.avarijaOshVspTextarea{
     width: fill-available;
     height: 6vh;
     resize: none;
     font-size: 0.8vw;
     text-align: center;
+    
 }
 .remontTextarea{
     width: fill-available;
@@ -78,6 +67,19 @@ input, button{
     resize: none;
     font-size: 0.8vw;
     text-align: center;
+}
+.inputInRightTable{
+    width: 2vw;
+    height: 1.1vh;
+    text-align: center;
+    font-size: 0.7vw;
+}
+
+.inputInLeftTable{
+    width: 8vw;
+    height: 1.1vh;
+    text-align: center;
+    font-size: 0.7vw;
 }
 
 

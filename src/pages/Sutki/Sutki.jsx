@@ -206,6 +206,7 @@ function ExportTable(){
          wsMainTable['!cols'] = wscolsMainTable;
          wsRashod['!cols'] = wscolsRashod;
          wsItogTable['!cols'] = wscolsItogTable;
+         
 
          utils.book_append_sheet(wb,wsMainTable, 'Главная таблица');
          utils.book_append_sheet(wb,wsRashod, 'Таблица расходов');      

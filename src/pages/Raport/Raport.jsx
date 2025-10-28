@@ -5,7 +5,8 @@ import cl from './Raport.module.css';
 import { useSelector,useDispatch } from "react-redux";
 import {createUdgArrRaport,createOtklUdgFactArrRaport,createRenderTableData} from '../../utils/pageRaportUtils';
 import Modal from '../../components/Modal/Modal';  
-import emptyRaport from '../../data/dataRaport'
+import emptyRaport from '../../data/dataRaport';
+import {utils,writeFile} from 'xlsx';
 
 function Raport (){
     const emptyDataRaport = new emptyRaport()
@@ -24,30 +25,65 @@ function Raport (){
     const dataTodayNapors = useSelector((state)=>{return  state.raport.dataTodayNapors});
     const titleTableRaport = useSelector((state)=>{return  state.raport.titleRaportTable}); 
     const dataFirstTable = useSelector((state)=>{return  state.raport.dataFirstTable}); 
+    const [downloadFlag,setDownloadFlag]= useState(false);
 
     const [modalError,setModalError] = useState(false);
     const [modaMessage,setModalMessage] = useState('');
-    const [minNagruzka,setMinNagruzka] = useState('');
 
     let dataForRender = createRenderTableData(uvbRaportData,naprRaportData,unbRaportData,naporsRaport,
                                             raportUDGArr,raportPbrArr,raportAIISArr,otklonRAportData,dataTodayNapors);
        
 
     function saveInputDataRaport(){
+        if(downloadFlag===false){
+            setModalMessage('Перед сохранением должна быть сделана выгрузка данных')
+            setModalError(true)
+            setTimeout(()=>{closeModal()},3500)
+            return }
         const dataToServer={
-            uvbRaportData,dataTodayNapors,unbRaportData,dataFirstTable,date: normalizeDate(date),
-        }
+            uvbRaportData,dataTodayNapors,unbRaportData,dataFirstTable,date: normalizeDate(date),maketRaportData}
         apiRaport.saveAllDataRaport(dataToServer)
         .then((data)=>{
             console.log(data)
         })
-
     }
 
     function closeModal(){
         setModalError(false);
-        setModalMessage('');
-    };
+        setModalMessage('');};
+
+    function exportExel(){
+        let exportArrRaportTable=[];// массив  данных для листа главной таблицы в Exel
+
+        ///////////////Настройка столбцов для Exel главной таблицы 
+        let wscolsRaportTable = [
+            {wch:50},{wch:50},{wch:20},
+            {wch:8},{wch:8},{wch:8},{wch:8},
+            {wch:8},{wch:8},{wch:8},{wch:8},
+            {wch:8},{wch:8}
+        ];
+        let wsRowsRaportTable = [
+            {hpx: 20},{hpx: 30},{hpx: 15},{hpx: 15},{hpx: 15},{hpx: 15},
+        ];
+
+        exportArrRaportTable.push({"Суточная справка":'О  состоянии  оборудования и режимах работы филиала ПАО "РусГидро" - "Нижегородская ГЭС" подключены к ЦКС АРЧМ с 00:11 27.07.25 - КДУ=+/-5 МВт, подключены к СДПМ с 00:12 17.12.19',})
+       
+        let wb = utils.book_new();
+        
+        let wsRaportTable = utils.json_to_sheet(exportArrRaportTable);
+
+        wsRaportTable['!merges']=[
+             utils.decode_range("A1:M1")
+        ]
+
+        wsRaportTable['!cols'] = wscolsRaportTable;
+        wsRaportTable['!rows'] = wsRowsRaportTable;
+   
+
+        utils.book_append_sheet(wb,wsRaportTable, 'Суточная справка');
+
+        writeFile(wb,`Суточная справка ${normalizeDate(date)}.xlsx`,{cellStyles: true})
+    }
 
     function isEnter(e,begin,end){
         if(e.keyCode===13){
@@ -62,26 +98,33 @@ function Raport (){
             const normDate = {date: normalizeDate(date),};
             apiRaport.getAllDataRaport(normDate)
             .then((data)=>{
-                console.log(data)
+                if(data.firstTable.err){
+                    emptyDataRaport.dataFirstTable.min_nagr_s_06_do_06 =
+                        Math.min(...(data.arrItogVirab.map((el)=>{return (Number(el[0])/1000).toFixed(0)})))
+                }
                 dispatch({type:"CHANGE_RAPORT_PBR_ARR",payload:data.itogPBRarr});
                 dispatch({type:"CHANGE_RAPORT_NAPORS_ARR",payload:data.itogArrNapors});
                 dispatch({type:"CHANGE_RAPORT_AIIS_ARR",payload:data.arrItogVirab});
                 dispatch({type:"CHANGE_RAPORT_MAKET_ARR",payload:data.raportMaketData});
+                
+                dispatch({type:"CHANGE_RAPORT_TODAY_NAPORS_ARR",payload:{p20:data.itogArrNapors[19][1],p21:data.itogArrNapors[20][1],
+                    p22:data.itogArrNapors[21][1],p23:data.itogArrNapors[22][1],p24:data.itogArrNapors[23][1],p25:data.itogArrNapors[24][1],
+                }}); 
 
+                console.log(data.itogArrNapors)
+                
                 if(!data.uvbRaport.err){dispatch({type:"CHANGE_RAPORT_UVB_ARR",payload:data.uvbRaport});                    
                 }else{dispatch({type:"CHANGE_RAPORT_UVB_ARR",payload:emptyDataRaport.dataUVB})};
 
                 if(!data.firstTable.err){dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:data.firstTable});                    
-                }else{dispatch({type:"CHANGE_RAPORT_UVB_ARR",payload:emptyDataRaport.dataFirstTable})};
+                }else{dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:emptyDataRaport.dataFirstTable})};
 
                 if(!data.unbRaport.err){dispatch({type:"CHANGE_RAPORT_UNB_ARR",payload:data.unbRaport});                    
                 }else{dispatch({type:"CHANGE_RAPORT_UNB_ARR",payload:emptyDataRaport.dataUNB})};
 
                 dispatch({type:"CHANGE_RAPORT_OTKLON_ARR",payload:createOtklUdgFactArrRaport(createUdgArrRaport(data.itogPBRarr), data.arrItogVirab)});
                 dispatch({type:"CHANGE_RAPORT_UDG_ARR",payload:createUdgArrRaport(data.itogPBRarr)});
-                setMinNagruzka(Math.min(...(data.arrItogVirab.map((el)=>{
-                    return (Number(el[0])/1000).toFixed(0)
-                }))));
+                setDownloadFlag(true)
             });
                dispatch({type:"CHANGE_RAPORT_TITLE_TABLE",payload:`Данные выгружены за ${date}`});
     };
@@ -108,25 +151,81 @@ function Raport (){
                             <td>{`06:00 ${normalizeDate(date)}`}</td><td colSpan={"2"}></td>
                         </tr>
                         <tr>
-                            <td>{`Диспетчерский график (на текущие сутки)`}</td><td></td><td>{`тыс.  кВт*час.`}</td>
+                            <td>{`Диспетчерский график (на текущие сутки)`}</td>
+                                <td>
+                                    <input type='text' 
+                                        value={dataFirstTable.dispetcher_graph}
+                                        onChange={(e)=>{
+                                            dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:{...dataFirstTable,dispetcher_graph:e.target.value}});}} 
+                                        className={cl.inputInLeftTable}/>
+                                </td>
+                                <td>{`тыс.  кВт*час.`}</td>
                         </tr>
                         <tr>
-                            <td>{`Выработка электроэнергии (за прошедшие сутки)`}</td><td>{Number(maketRaportData.sum_virabotka).toFixed(0)}</td><td>{`тыс.  кВт*час.`}</td>
+                            <td>{`Выработка электроэнергии (за прошедшие сутки)`}</td>
+                            <td>
+                                <input type='text' 
+                                    value={Number(maketRaportData.sum_virabotka).toFixed(0)}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_MAKET_ARR",payload:{...maketRaportData,sum_virabotka:e.target.value}});}} 
+                                    className={cl.inputInLeftTable}/>
+                            </td>
+                            <td>{`тыс.  кВт*час.`}</td>
                         </tr>
                         <tr>
-                            <td>{`Выработка с начала месяца`}</td><td>{Number(maketRaportData.virabotka_s_nach_mes).toFixed(0)}</td><td>{`тыс.  кВт*час.`}</td>
+                            <td>{`Выработка с начала месяца`}</td>
+                            <td>
+                                <input type='text' 
+                                    value={Number(maketRaportData.virabotka_s_nach_mes).toFixed(0)}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_MAKET_ARR",payload:{...maketRaportData,virabotka_s_nach_mes:e.target.value}});}} 
+                                    className={cl.inputInLeftTable}/>
+                            </td>
+                            <td>{`тыс.  кВт*час.`}</td>
                         </tr>
                         <tr>
-                            <td>{`Среднесуточный расход (суммарный)`}</td><td>{maketRaportData.rashod_sum_n_bief}</td><td>{`м³/сек.`}</td>
+                            <td>{`Среднесуточный расход (суммарный)`}</td>
+                            <td>
+                                <input type='text' 
+                                    value={maketRaportData.rashod_sum_n_bief}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_MAKET_ARR",payload:{...maketRaportData,rashod_sum_n_bief:e.target.value}});}} 
+                                    className={cl.inputInLeftTable}/>
+                            </td>
+                            <td>{`м³/сек.`}</td>
                         </tr>
                         <tr>
-                            <td>{`Расход через турбины`}</td><td>{maketRaportData.rashod_turbin}</td><td>{`м³/сек.`}</td>
+                            <td>{`Расход через турбины`}</td>
+                            <td>
+                                <input type='text' 
+                                    value={maketRaportData.rashod_turbin}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_MAKET_ARR",payload:{...maketRaportData,rashod_turbin:e.target.value}});}} 
+                                    className={cl.inputInLeftTable}/>                                
+                            </td>
+                            <td>{`м³/сек.`}</td>
                         </tr>
                         <tr>
-                            <td>{`Расход через водосливную плотину`}</td><td>{maketRaportData.rashod_vodosbros}</td><td>{`м³/сек.`}</td>
+                            <td>{`Расход через водосливную плотину`}</td>
+                            <td>
+                                <input type='text' 
+                                    value={maketRaportData.rashod_vodosbros}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_MAKET_ARR",payload:{...maketRaportData,rashod_vodosbros:e.target.value}});}} 
+                                    className={cl.inputInLeftTable}/>   
+                            </td>
+                            <td>{`м³/сек.`}</td>
                         </tr>
                         <tr>
-                            <td>{`Боковой приток за прошедшие сутки`}</td><td>{maketRaportData.bokovoi_pritok}</td><td>{`м³/сек.`}</td>
+                            <td>{`Боковой приток за прошедшие сутки`}</td>
+                            <td>
+                                <input type='text' 
+                                    value={maketRaportData.bokovoi_pritok}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_MAKET_ARR",payload:{...maketRaportData,bokovoi_pritok:e.target.value}});}} 
+                                    className={cl.inputInLeftTable}/> 
+                            </td>
+                            <td>{`м³/сек.`}</td>
                         </tr>
                         <tr>
                             <td>{`Среднесуточный расход Рыбинской ГЭС `}</td>
@@ -140,7 +239,15 @@ function Raport (){
                             <td>{`м³/сек.`}</td>
                         </tr>
                         <tr>
-                            <td>{`Суммарный среднесуточный приток`}</td><td></td><td>{`м³/сек.`}</td>
+                            <td>{`Суммарный среднесуточный приток`}</td>
+                            <td>
+                                <input type='text' 
+                                    value={dataFirstTable.summarn_pritok}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:{...dataFirstTable,summarn_pritok:e.target.value}});}} 
+                                    className={cl.inputInLeftTable}/>
+                            </td>
+                            <td>{`м³/сек.`}</td>
                         </tr>
                         <tr>
                             <td>{`Уровень верхнего бьефа (на 06:00)`}</td>
@@ -166,15 +273,37 @@ function Raport (){
                             <td>{`м`}</td>
                         </tr>
                         <tr>
-                            <td>{`Минимальная нагрузка (с 6:00 прошлых до 6:00 текущих суток)`}</td><td>{minNagruzka}</td><td>{`МВт`}</td>
+                            <td>{`Минимальная нагрузка (с 6:00 прошлых до 6:00 текущих суток)`}</td>
+                            <td>
+                                {dataFirstTable.min_nagr_s_06_do_06}
+                            </td>
+                            <td>{`МВт`}</td>
                         </tr>
                         <tr>
-                            <td>{`Располагаемая мощность`}</td><td></td><td>{`МВт`}</td>
+                            <td>{`Располагаемая мощность`}</td>
+                            <td>
+                                <input type='text' 
+                                    autoComplete={'off'}
+                                    value={dataFirstTable.raspol_moshnost}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:{...dataFirstTable,raspol_moshnost:e.target.value}});}} 
+                                    className={cl.inputInLeftTable}/>                               
+                            </td>
+                            <td>{`МВт`}</td>
                         </tr>
                         <tr>
-                            <td>{`Рабочая мощность  (на текущие сутки)`}</td><td></td><td>{`МВт`}</td>
+                            <td>{`Рабочая мощность  (на текущие сутки)`}</td>
+                            <td>
+                                <input type='text' 
+                                    autoComplete={'off'}
+                                    value={dataFirstTable.raboch_moshnost}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:{...dataFirstTable,raboch_moshnost:e.target.value}});}} 
+                                    className={cl.inputInLeftTable}/>   
+                            </td>
+                            <td>{`МВт`}</td>
                         </tr>
-                        <tr style={{height:"10vh"}}>
+                        <tr >
                             <td>{`В ремонте (основное оборудование, оборудование ОРУ-110,220, оборудование 13,8 кВ,обрудование 6 кВ)`}</td>
                             <td colSpan={"2"}>
                                 <textarea value={dataFirstTable.remont} onChange={(e)=>{
@@ -188,7 +317,7 @@ function Raport (){
                             <td colSpan={"2"}>
                                 <textarea value={dataFirstTable.incident}onChange={(e)=>{
                                      dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:{...dataFirstTable,incident:e.target.value}});
-                                }} className={cl.avarijaTextarea}></textarea>
+                                }} className={cl.avarijaOshVspTextarea}></textarea>
                             </td> 
                         </tr>
                         <tr>
@@ -230,13 +359,35 @@ function Raport (){
                             <td>{`МВт`}</td> 
                         </tr>
                         <tr>
-                            <td>{`Отметка ВБ Рыбинской ГЭС`}</td><td></td><td></td> 
+                            <td>{`Отметка ВБ Рыбинской ГЭС`}</td>
+                            <td>
+                                 <input type='text' 
+                                    value={dataFirstTable.uvb_ryb_ges}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:{...dataFirstTable,uvb_ryb_ges:e.target.value}});}} 
+                                    className={cl.inputInLeftTable}/>
+                            </td>
+                            <td>{"м"}</td> 
                         </tr>
                         <tr>
-                            <td>{`Переводы на ОСШ 110 кВ `}</td><td></td><td></td> 
+                            <td>{`Переводы на ОСШ 110 кВ `}</td>
+                            <td colSpan={2}>
+                                <textarea type='text' 
+                                    value={dataFirstTable.perevodi_osh}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:{...dataFirstTable,perevodi_osh:e.target.value}});}} 
+                                    className={cl.avarijaOshVspTextarea}></textarea>
+                            </td>
                         </tr>
                         <tr>
-                            <td>{`Открытие/Закрытие ВСП`}</td><td></td><td></td> 
+                            <td>{`Открытие/Закрытие ВСП`}</td>
+                            <td colSpan={2}>
+                                 <textarea type='text' 
+                                    value={dataFirstTable.otkr_zakr_vsp}
+                                    onChange={(e)=>{
+                                        dispatch({type:"CHANGE_RAPORT_DATA_FIRST_TABLE",payload:{...dataFirstTable,otkr_zakr_vsp:e.target.value}});}} 
+                                    className={cl.avarijaOshVspTextarea}></textarea>
+                            </td>
                         </tr>
                     </tbody>
                     <tfoot></tfoot>
@@ -319,7 +470,7 @@ function Raport (){
                                                 className={cl.inputInRightTable}/>
                                         </td>
                                         <td>
-                                            {str.napor===''?  
+                                            {str.idNAP?  
                                                  <input 
                                                     id={str.idNAP}
                                                     autoComplete={'off'}
@@ -330,7 +481,12 @@ function Raport (){
                                                     onKeyDown={(e)=>isEnter(e,51,57)}
                                                     className={cl.inputInRightTable}/>
                                                  :
-                                                 str.napor
+                                                 <input 
+                                                    // id={str.idNAP}
+                                                    autoComplete={'off'}
+                                                    value={str.napor}
+                                                    onChange={(e)=>{console.log(str.idNAP)} } 
+                                                    className={cl.inputInRightTable}/>
                                             }
                                         </td>
                                         <td>{str.pbr}</td>
@@ -353,6 +509,9 @@ function Raport (){
                     </table>
                     <button onClick={()=>{saveInputDataRaport()}}>
                         Сохранить введённые данные
+                    </button>
+                    <button onClick={()=>{exportExel()}}>
+                        Экспорт таблицы в EXEL
                     </button>
                 </div>
                 

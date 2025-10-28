@@ -55,14 +55,19 @@ function createRenderTableData(uvbRaportData,naprRaportData,unbRaportData,napors
             udg:raportUDGArr[17][0], pbr:raportPbrArr[17][2], aiiskue:raportAIISArr[17][0], otklon:otklonRAportData[17]},
         {chas:'24:00', numb:'p19', idUVB:19, idUNB:44, uvb:uvbRaportData.p19, naprjag:naprRaportData.p19, unb:unbRaportData.p19, napor:naporsRaport[18][1], 
             udg:raportUDGArr[18][0], pbr:raportPbrArr[18][2], aiiskue:raportAIISArr[18][0], otklon:otklonRAportData[18]},
+
         {chas:'01:00', numb:'p20', idUVB:20, idUNB:45, uvb:uvbRaportData.p20, naprjag:naprRaportData.p20, unb:unbRaportData.p20, napor:naporsRaport[19][1], 
             udg:raportUDGArr[19][0], pbr:raportPbrArr[19][2], aiiskue:raportAIISArr[19][0], otklon:otklonRAportData[19], idNAP:51, todayNapor:dataTodayNapors.p20},
+
         {chas:'02:00', numb:'p21', idUVB:21, idUNB:46, uvb:uvbRaportData.p21, naprjag:naprRaportData.p21, unb:unbRaportData.p21, napor:naporsRaport[20][1], 
             udg:raportUDGArr[20][0], pbr:raportPbrArr[20][2], aiiskue:raportAIISArr[20][0], otklon:otklonRAportData[20], idNAP:52, todayNapor:dataTodayNapors.p21},
+
         {chas:'03:00', numb:'p22', idUVB:22, idUNB:47, uvb:uvbRaportData.p22, naprjag:naprRaportData.p22, unb:unbRaportData.p22, napor:naporsRaport[21][1], 
             udg:raportUDGArr[21][0], pbr:raportPbrArr[21][2], aiiskue:raportAIISArr[21][0], otklon:otklonRAportData[21], idNAP:53, todayNapor:dataTodayNapors.p22},
+
         {chas:'04:00', numb:'p23', idUVB:23, idUNB:48, uvb:uvbRaportData.p23, naprjag:naprRaportData.p23, unb:unbRaportData.p23, napor:naporsRaport[22][1], 
             udg:raportUDGArr[22][0], pbr:raportPbrArr[22][2], aiiskue:raportAIISArr[22][0], otklon:otklonRAportData[22], idNAP:54, todayNapor:dataTodayNapors.p23},
+            
         {chas:'05:00', numb:'p24', idUVB:24, idUNB:49, uvb:uvbRaportData.p24, naprjag:naprRaportData.p24, unb:unbRaportData.p24, napor:naporsRaport[23][1], 
             udg:raportUDGArr[23][0], pbr:raportPbrArr[23][2], aiiskue:raportAIISArr[23][0], otklon:otklonRAportData[23], idNAP:55, todayNapor:dataTodayNapors.p24},
         {chas:'06:00', numb:'p25', idUVB:25, idUNB:50, uvb:uvbRaportData.p25, naprjag:naprRaportData.p25, unb:unbRaportData.p25, napor:naporsRaport[24][1], 
