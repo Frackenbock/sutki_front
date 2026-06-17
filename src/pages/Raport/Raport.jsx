@@ -41,7 +41,7 @@ function Raport (){
             setTimeout(()=>{closeModal()},3500)
             return }
         const dataToServer={
-            uvbRaportData,dataTodayNapors,unbRaportData,dataFirstTable,date: normalizeDate(date),maketRaportData}
+            uvbRaportData,dataTodayNapors,unbRaportData,dataFirstTable,date: normalizeDate(date)}
         apiRaport.saveAllDataRaport(dataToServer)
         .then((data)=>{
             console.log(data)
@@ -98,7 +98,8 @@ function Raport (){
             const normDate = {date: normalizeDate(date),};
             apiRaport.getAllDataRaport(normDate)
             .then((data)=>{
-                if(data.firstTable.err){
+                setDownloadFlag(true)
+                if(data.firstTable){
                     emptyDataRaport.dataFirstTable.min_nagr_s_06_do_06 =
                         Math.min(...(data.arrItogVirab.map((el)=>{return (Number(el[0])/1000).toFixed(0)})))
                 }
@@ -111,7 +112,6 @@ function Raport (){
                     p22:data.itogArrNapors[21][1],p23:data.itogArrNapors[22][1],p24:data.itogArrNapors[23][1],p25:data.itogArrNapors[24][1],
                 }}); 
 
-                console.log(data.itogArrNapors)
                 
                 if(!data.uvbRaport.err){dispatch({type:"CHANGE_RAPORT_UVB_ARR",payload:data.uvbRaport});                    
                 }else{dispatch({type:"CHANGE_RAPORT_UVB_ARR",payload:emptyDataRaport.dataUVB})};
@@ -124,7 +124,7 @@ function Raport (){
 
                 dispatch({type:"CHANGE_RAPORT_OTKLON_ARR",payload:createOtklUdgFactArrRaport(createUdgArrRaport(data.itogPBRarr), data.arrItogVirab)});
                 dispatch({type:"CHANGE_RAPORT_UDG_ARR",payload:createUdgArrRaport(data.itogPBRarr)});
-                setDownloadFlag(true)
+                
             });
                dispatch({type:"CHANGE_RAPORT_TITLE_TABLE",payload:`Данные выгружены за ${date}`});
     };
